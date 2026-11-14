@@ -1,9 +1,8 @@
-// Deep Net: inside cyberspace. A dark-window scene in blues.
-// A wireframe grid floor runs to the horizon and keeps flowing toward you; wireframe data towers stand along it.
-// At the left a wall of defensive ICE, a lattice of hexagons, has a breach in it that pulses; a stream of packets runs
-// from the breach across the void to the right, where a netrunner sits cross-legged on a floating hex platform,
-// face circuits glowing, a cable rising from the headset into the sky. A small daemon program hovers beside them.
-// A wireframe cube and an octahedron turn slowly overhead.
+// Deep Net. What I imagine the inside of the Net looks like, all in blues.
+// A wireframe grid floor that keeps flowing towards you, data towers on the horizon, and on the left a wall of ICE
+// (a big hexagon lattice) with a hole being punched through it. Packets stream from the hole across to the right,
+// where the netrunner sits cross-legged on a floating platform, with a cable running up from their headset.
+// The little diamond thing hovering next to them is their daemon. I wanted it to feel like a pet program.
 
 import { HEIGHT, PAIR_LEFT, PAIR_RIGHT, WIDTH, figure, grain, hash, rect, specks, square, svgRoot } from './kit'
 

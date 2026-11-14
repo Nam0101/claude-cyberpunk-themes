@@ -1,9 +1,9 @@
-// Ripperdoc: a back-alley cyberware clinic. A dark-window scene in surgical greens.
-// A tiled wall under hard green light. At the left: a CRT heart monitor tracing a pulse, a pegboard of spare cyberware
-// (an arm, an eye, a spine, a hand), and a shelf of jars where cyber-eyes float in bubbling fluid.
-// A green cross hums on the back wall. A surgical lamp hangs over the right, its cone falling on the doc,
-// who wears a cap, a mask and a loupe and holds a sparking tool, and on a hulking patient in the chair
-// whose new chrome arm glints. An IV bag drips beside them; pipes along the ceiling leak now and then.
+// Ripperdoc. Every cyberpunk story needs a sketchy clinic, so here's mine.
+// Tiled walls under harsh green light. On the left: a heart monitor, a pegboard of spare chrome parts,
+// and a shelf of jars with eyeballs floating in them (gross, I know, but it felt right).
+// On the right the doc, in a cap, mask and loupe, is fitting a new chrome arm onto a very calm patient,
+// and you get little sparks every few seconds.
+// The IV drip and the leaky pipes are just there to make the room feel lived in.
 
 import { HEIGHT, PAIR_LEFT, PAIR_RIGHT, WIDTH, figure, grain, hash, rect, specks, sprite, square, svgRoot } from './kit'
 

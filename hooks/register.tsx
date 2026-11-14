@@ -1,3 +1,9 @@
+// The actual plugin. It does three things:
+//   1. when a session starts, applies whichever theme you picked last (Neon Rooftop if you never picked one),
+//   2. handles the /neon command for listing and switching themes,
+//   3. draws the chosen theme's scene behind the chat.
+// That's all it does: it never reads your work, never touches the network, and only remembers the theme name.
+
 import type { EngineInterface, Register, ThemeSetArgs } from 'claude-code'
 
 import { phosphorAlleySvg } from './alley'
@@ -53,7 +59,7 @@ const LOOKS: readonly Look[] = [
     'A white corporate plaza: glass towers, a red hologram emblem, a cherry tree, a corpo in a suit and a security bot'),
 ]
 
-/** Each scene's SVG, built the first time a window asks for it. */
+/** Scenes get built once, the first time a window needs them, and reused after that. */
 const built = new Map<string, string>()
 
 function lookOf(word: string): Look | undefined {

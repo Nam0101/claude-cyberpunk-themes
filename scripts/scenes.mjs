@@ -1,4 +1,4 @@
-// The list of themes the scripts work over: id, title, scene builder and the palette key.
+// The list of themes the scripts loop over. If you add a theme, add it here too.
 import { neonRooftopSvg } from '../hooks/scene.ts'
 import { phosphorAlleySvg } from '../hooks/alley.ts'
 import { deepNetSvg } from '../hooks/deepnet.ts'

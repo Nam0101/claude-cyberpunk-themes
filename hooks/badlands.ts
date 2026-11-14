@@ -1,9 +1,8 @@
-// Badlands: the desert outside the city at dusk. A dark-window scene in burnt oranges.
-// A huge striped sun sinks behind layered mesas; the city is a faint skyline on the far left horizon.
-// An abandoned motel sign leans at the left, its arrow half lit. Wind turbines turn on the ridges, a dust devil
-// wanders across the flats, and an elevated highway carries passing tail-lights.
-// On the right a nomad car is parked on the hardpan: a tiny twin-tailed gunner sits on its roof, a big bruiser with
-// a chrome jaw and arm leans in front of it.
+// Badlands. Getting out of the city for a bit: the desert at sunset, in burnt oranges.
+// A big striped sun sinks behind layered mesas, the city is a faint skyline on the horizon, wind turbines turn,
+// and a dust devil wanders around. There's an old motel sign on the left with half its bulbs dead.
+// The nomads are parked on the right: a tiny gunner with twin tails sitting on the car roof,
+// and a big guy with a chrome jaw leaning against the front.
 
 import { glyphSign } from './extras'
 import { HEIGHT, PAIR_LEFT, PAIR_RIGHT, WIDTH, figure, grain, hash, rect, specks, sprite, square, svgRoot } from './kit'

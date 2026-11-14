@@ -1,6 +1,6 @@
-// Builds the README's visuals from the plugin's own scenes:
-//   assets/themes/<id>.svg  each theme's live scene, as the app draws it
-//   assets/launch.svg       the launch film: a title card, every theme with an example conversation, a gallery finale
+// Builds the visuals in the README straight from the plugin's own scenes, so they never drift out of date:
+//   assets/themes/<id>.svg  each theme's live scene, exactly as the app draws it
+//   assets/launch.svg       the launch film: a title card, every theme with an example chat, then all of them together
 //   node --import ./scripts/ts-ext.mjs scripts/build-assets.mjs
 
 import { mkdirSync, writeFileSync } from 'node:fs'

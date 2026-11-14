@@ -1,9 +1,8 @@
-// Blackwall: the edge of the Net, where something should not get through. A dark-window scene in black with one red.
-// A vast wall of fine vertical code stands behind everything, almost black on black. Red cracks run through it, and in
-// the cracks, now and then, pairs of red eyes open and look out. A shattered red mask of a rogue AI glitches at the left
-// beside a warning sign. Far behind, in the haze, a huge armoured silhouette stands with a red visor slit.
-// A red security scan sweeps down the screen. On the right a hooded runner with a red visor faces the wall,
-// and a small drone with one red eye hovers beside them.
+// Blackwall. The darkest theme, and honestly my favourite for late nights.
+// It's basically all black with a single red: a wall of code that's barely visible, with red cracks running
+// through it. Every so often a pair of eyes opens in one of the cracks. There's a glitching mask on the left,
+// a huge armoured shape standing in the fog behind everything, and a red scan that slowly sweeps down.
+// A hooded runner and their drone stand on the right, facing the wall. I wanted it to feel a bit uneasy.
 
 import { glyphSign } from './extras'
 import { HEIGHT, PAIR_LEFT, PAIR_RIGHT, WIDTH, figure, grain, hash, rect, specks, svgRoot } from './kit'

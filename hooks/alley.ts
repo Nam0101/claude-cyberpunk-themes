@@ -1,12 +1,10 @@
-// Phosphor Alley: a back street at night under green light. A dark-window scene.
-// Street level this time. At the left an old apartment block: a window grid, humming AC units that drip, a cat on one of them,
-// a hanging noodle-shop sign, and a vending machine glowing mint at its foot.
-// Power lines sag across the sky to a utility pole at the right. The two mascots sit on the lower line, legs dangling;
-// the one with the silver bob holds an LED umbrella over them both. Pigeons share the upper line with a pair of sneakers.
-// Up in the sky a hologram jellyfish ad pulses, projected from the rooftop, glitching now and then.
-// The street is wet: light from the sign and the machine smears into it, and rain rings the puddles.
-// One warm note: the lantern-amber of the sign and the mascots themselves. Everything else is phosphor green and teal.
-// Pure string building: no DOM, nothing read from outside, the same string on every call.
+// Phosphor Alley. My room has green lighting, so this is the one I actually use most.
+// Street level this time: an old apartment block on the left with dripping AC units (and a cat that lives on one),
+// a noodle-shop sign, and a vending machine glowing at the bottom.
+// The two mascots sit on a power line sharing an LED umbrella, next to some pigeons and a pair of sneakers
+// someone threw up there. A hologram jellyfish ad floats in the sky and glitches every now and then.
+// Pretty much everything is green and teal, except for one warm amber from the sign and the mascots themselves.
+// Plain string building again: no DOM, nothing from outside, same picture every time.
 
 import { EXTRA_STYLE, codeScreen, flyingCar, glyphSign, megatower } from './extras'
 import { BOB, JACKET, cellsOf, grain, hash, mascot, square } from './scene'
@@ -217,7 +215,7 @@ function pigeons(): string {
     .join('')
 }
 
-/** A pair of sneakers thrown over the upper line, swaying on their laces. */
+/** Someone threw their sneakers over the wire. They sway a little. */
 function sneakers(): string {
   const x = 1000
   const y = cableY(HIGH, x)
@@ -232,7 +230,7 @@ mmmm
     `${sprite(shoe, x - 18, y + 28, 4, paint)}${sprite(shoe, x + 4, y + 36, 4, paint)}</g>`
 }
 
-/** The LED umbrella the silver-haired one holds over both: a glowing rim, ribs, a slow colour breath. */
+/** The glowing umbrella the silver-haired one holds over both of them. */
 function umbrella(cx: number, bottom: number, handleY: number): string {
   const map = `
 .........cccccccc.........

@@ -1,6 +1,8 @@
-// Every theme's palette as plain data, so the mod and the audit script read the same values.
-// Each is the argument to makeColors: four surfaces (page, cards, panels, menus) and three text tones per mode,
-// plus five roles. Words come first: text-primary is 7:1 or better on every surface; text-muted is 4.5:1 or better.
+// All the theme colours in one place. If you want to recolour a theme, this is the file.
+// Each palette is four surfaces (page, cards, panels, menus), three text shades and five accents, which
+// makeColors turns into the full set of colours the app needs.
+// I kept readability first: main text is 7:1 or better on every surface, muted text 4.5:1 or better.
+// The audit script checks all of this, so you'll know if a change makes something hard to read.
 
 type Roles = { accent: string; danger: string; success: string; warning: string; pro: string }
 type Anchors = { 'surface-0': string; 'text-primary': string } & Partial<Record<'surface-1' | 'surface-2' | 'surface-3' | 'text-secondary' | 'text-muted', string>>

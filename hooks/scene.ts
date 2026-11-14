@@ -1,10 +1,10 @@
-// Neon Rooftop: a minimal pixel city at night. A dark-window scene.
-// Two tile mascots sit on a rooftop at the right, legs over the edge, watching a big pixel moon:
-// one in a yellow jacket with spiky dark hair, one with a silver bob whose tips glow pink and cyan.
-// Around them: a far skyline and a near one built from cells (tall at the edges, low in the reading column),
-// windows that glow soft cyan, magenta and amber on slow clocks, a train that slides past on an elevated line,
-// a thin drizzle and a faint perspective grid on the ground.
-// Pure string building: no DOM, nothing read from outside, the same string on every call.
+// Neon Rooftop. The first theme I made, and still the one I come back to.
+// Two little mascots sit on a rooftop with their legs over the edge, watching a huge pixel moon.
+// One has the yellow jacket and spiky hair, the other the silver bob with pink and cyan tips
+// (if you've watched Edgerunners, you'll know who they're meant to be).
+// The city is two skylines made of tiles. I kept the buildings low in the middle so they don't fight
+// with the chat, and the windows fade in and out slowly instead of blinking at you.
+// Everything here is plain string building, so the same call always gives the same picture.
 
 const WIDTH = 1600
 const HEIGHT = 1000
@@ -39,7 +39,7 @@ export function square(x: number, y: number, size: number): string {
   return `M${x} ${y}h${size}v${size}h-${size}z`
 }
 
-/** One row of buildings: tall toward the edge thirds, low through the middle, snapped to the layer's cell. */
+/** A row of buildings: tall towards the edges, low in the middle so the chat area stays calm. */
 function skyline(seed: number, cell: number, tallest: number, floor: number): Building[] {
   const out: Building[] = []
   let x = -cell * 2
@@ -295,7 +295,7 @@ export function mascot(map: string, left: number, roof: number, delay: number, g
   return `${legs}<g class="breathe" style="animation-delay:-${delay}s">${mosaic(base, left, top)}${halo}<g class="blink" style="animation-delay:-${delay * 3}s">${mosaic(eyes, left, top)}</g></g>`
 }
 
-/** A tiny pixel heart that rises between the two now and then and fades. */
+/** Every so often a tiny pixel heart floats up between them. My favourite detail. */
 function heart(x: number, y: number): string {
   const map = `
 .PP.PP.

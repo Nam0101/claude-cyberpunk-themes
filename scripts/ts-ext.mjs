@@ -1,5 +1,5 @@
-// Lets Node resolve the plugin's extensionless imports ('./kit') the way Claude Code does.
-// Used as: node --import ./scripts/ts-ext.mjs scripts/<script>.mjs
+// Small helper so Node can find the plugin's imports without file extensions ('./kit' instead of './kit.ts'),
+// the same way Claude Code does. Use it like: node --import ./scripts/ts-ext.mjs scripts/<script>.mjs
 import { registerHooks } from 'node:module'
 
 registerHooks({

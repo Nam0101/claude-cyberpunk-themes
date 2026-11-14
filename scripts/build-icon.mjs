@@ -1,5 +1,5 @@
-// Writes .claude-plugin/icon.png: a 512 by 512 pixel-art mascot in a visor, drawn from a 16 by 16 map.
-// Pure Node (zlib for the PNG's compressed data); no image libraries.
+// Makes the plugin icon (.claude-plugin/icon.png): the mascot in a visor, drawn from a 16 by 16 map and
+// scaled up to 512 by 512. Just Node and zlib, no image libraries needed.
 //   node scripts/build-icon.mjs
 
 import { writeFileSync } from 'node:fs'

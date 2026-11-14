@@ -1,9 +1,8 @@
-// Corpo Plaza: a pristine corporate plaza at midday. A light-window scene, the one look made for light mode.
-// Pale glass towers in a soft white haze. The tallest projects a giant red hologram emblem that turns slowly; a stock
-// ticker scrolls along another; a red banner in the invented script hangs from a third.
-// At the left a pixel cherry tree grows from a stone planter, petals drifting across the whole plaza.
-// A security drone sweeps a red scan cone over the marble floor. On the right stand a corpo in a black suit,
-// red tie and sunglasses, briefcase in hand, and a white security bot with a red visor.
+// Corpo Plaza. The only light-mode theme, for the people who code in daylight.
+// A spotless corporate plaza: pale glass towers, a giant red hologram logo slowly turning, a stock ticker,
+// a cherry tree on the left with petals drifting across everything, and a security drone scanning the floor.
+// On the right, a corpo in a black suit and sunglasses with a briefcase, and their very white security bot.
+// Everything is a little too clean, which is kind of the point.
 
 import { glyphSign } from './extras'
 import { HEIGHT, PAIR_LEFT, PAIR_RIGHT, WIDTH, figure, grain, hash, rect, sprite, svgRoot } from './kit'

@@ -1,10 +1,13 @@
-// The pixel kit the newer scenes share: deterministic noise, tiles from text maps, characters that breathe, blink
-// and swing their legs, rain, stars and grain. Pure string building; nothing here touches anything outside.
+// My little pixel toolkit. Every scene after the first two is built with this.
+// The main idea: characters and objects are drawn as text maps, where each letter is one coloured square.
+// figure() takes a map like that and turns it into a character that breathes, blinks and swings its legs.
+// There's also rain, twinkling specks, film grain and the SVG wrapper every scene shares.
+// It's all just string building, nothing here touches anything outside the plugin.
 
 export const WIDTH = 1600
 export const HEIGHT = 1000
 
-/** Where the two characters of a scene sit: the clear gap between the conversation and an open side panel. */
+/** Where the characters stand. I always have the side panel open, so they live in the gap between the chat and the panel. */
 export const PAIR_LEFT = 1084
 export const PAIR_RIGHT = 1202
 
@@ -100,7 +103,7 @@ export function specks(cx: number, cy: number, rx: number, ry: number, count: nu
   return parts.map((d, i) => `<path class="star" style="animation-duration:${6 + i * 2.5}s;animation-delay:-${i * 2}s" d="${d}" fill="${colour}"/>`).join('')
 }
 
-/** Grain: barely visible light and dark pixels, so a gradient cannot band. */
+/** A tiny bit of noise on top, so the dark gradients don't show ugly bands. */
 export function grain(light: string, lightOpacity = 0.025, darkOpacity = 0.1): string {
   let a = ''
   let b = ''
@@ -112,7 +115,7 @@ export function grain(light: string, lightOpacity = 0.025, darkOpacity = 0.1): s
   return `<pattern id="grain" width="96" height="96" patternUnits="userSpaceOnUse"><path d="${a}" fill="${light}" fill-opacity="${lightOpacity}"/><path d="${b}" fill="#000" fill-opacity="${darkOpacity}"/></pattern>`
 }
 
-/** The classes every newer scene uses for its characters and ambient life. Each scene adds its own after these. */
+/** Shared animation classes (breathing, blinking, rain and so on). Each scene adds its own on top of these. */
 export const KIT_STYLE = `
 text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700}
 .breathe{animation:breathe 6s ease-in-out infinite}

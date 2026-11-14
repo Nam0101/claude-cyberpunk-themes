@@ -1,15 +1,15 @@
-// Audits every theme for accessibility and safety. Exits non-zero on any failure.
+// The checks I run before anything gets pushed (CI runs them too). If any of them fail, the build fails.
 //   node --import ./scripts/ts-ext.mjs scripts/audit.mjs
 //
 // Accessibility
-//   - Colour contrast (WCAG 2.2): text-primary at 7:1 or better on every surface (AAA), text-secondary and text-muted
-//     at 4.5:1 or better on the page and panels (AA). The design system's own checks must not refuse the palette.
-//   - Reduced motion: every scene must stop all animation under prefers-reduced-motion.
-//   - Flashing (WCAG 2.3.1): no animation may cycle faster than three times a second.
+//   - Contrast (WCAG 2.2): main text has to be 7:1 or better on every surface, secondary and muted text 4.5:1
+//     on the page and panels. Claude Code's own colour checks also have to accept the palette.
+//   - Reduced motion: every scene has to stop moving when reduced motion is on.
+//   - Flashing (WCAG 2.3.1): nothing is allowed to cycle faster than three times a second.
 // Safety
-//   - Scenes are pure SVG: no script, no event handler, no link, no external or embedded resource, no entity.
-//   - Each scene is deterministic and under the 131,072 character limit Claude Code sets.
-//   - The plugin's code never reaches the network, files, processes, models or tools, and never evaluates code.
+//   - Scenes have to be pure SVG: no scripts, event handlers, links or anything loaded from outside.
+//   - Each scene has to come out the same every time, and stay under Claude Code's 131,072 character limit.
+//   - The plugin code must never reach the network, files, processes, models or tools, or run code from a string.
 
 import { readFileSync, readdirSync } from 'node:fs'
 import { makeColors } from '../hooks/make-colors.js'

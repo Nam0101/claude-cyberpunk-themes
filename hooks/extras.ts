@@ -1,6 +1,6 @@
-// Cyberpunk set pieces shared by both scenes: a megacorp tower with sweeping searchlights, flying cars with light trails,
-// an LED ad blimp, vertical signs in an invented pixel script, a hologram eye billboard and a netrunner's code screen.
-// Each piece is pure string building and animates with the classes in EXTRA_STYLE.
+// The cyberpunk bits I wanted in more than one scene: a megacorp tower with searchlights, flying cars with
+// light trails, an ad blimp, vertical signs in a made-up pixel script, a hologram eye billboard and a
+// netrunner's code screen. Each function returns a chunk of SVG, and the animations live in EXTRA_STYLE below.
 
 // Its own copies of the two tiny helpers, so the scenes can import this file without an import cycle.
 function hash(a: number, b: number): number {

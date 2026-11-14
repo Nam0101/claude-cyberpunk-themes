@@ -1,18 +1,20 @@
 # Security policy
 
-## What this plugin can do
+## What this plugin can actually do
 
-It only changes how the Claude Code desktop app looks. Claude Code's validator (`claude plugin validate .`) lists every capability the hooks module uses:
+Not much, and that's on purpose. It only changes how the Claude Code desktop app looks. If you run `claude plugin validate .`, Claude Code lists every capability the plugin uses:
 
-| Capability | Why |
+| Capability | Why it's there |
 | --- | --- |
 | `$.command.register` | Adds the `/neon` command. |
-| `$.store.get` / `$.store.set` | Remembers the name of the theme you picked. |
+| `$.store.get` / `$.store.set` | Remembers which theme you picked. That's the only thing it saves. |
 | `$.theme.set` / `$.theme.clear` | Applies the palette and scene, or removes them. |
-| `$.ui.status` / `$.ui.toast` | Says when a window can't show the theme. |
-| `$.ui.resolve` | Draws the backdrop. |
+| `$.ui.status` / `$.ui.toast` | Lets you know if a window can't show the theme. |
+| `$.ui.resolve` | Draws the background. |
 
-It has no network, file, process, model or tool access. It doesn't hook tool calls, prompts or permissions, and it has no dependencies or install scripts. Scenes are plain SVG with CSS animation, and `scripts/audit.mjs` fails CI if a script, link, external resource or event handler ever appears in one.
+It has no network, file, process, model or tool access. It doesn't hook into tool calls, prompts or permissions, and has no dependencies or install scripts.
+
+The scenes are plain SVG with CSS animation. `scripts/audit.mjs` runs on every push, and fails if a script, link, external resource or event handler ever shows up in one.
 
 ## Supported versions
 
@@ -22,6 +24,6 @@ It has no network, file, process, model or tool access. It doesn't hook tool cal
 
 ## Reporting a vulnerability
 
-Please don't open a public issue for a security problem. Use GitHub's private vulnerability reporting: the **Security** tab of this repository, then **Report a vulnerability**.
+If you find something, please don't open a public issue. Report it privately instead: go to the **Security** tab of this repo and click **Report a vulnerability**.
 
-You can expect a first reply within a week. Fixed issues are credited in the changelog unless you'd rather stay anonymous.
+I'll get back to you within a week. Once it's fixed, I'll credit you in the changelog (unless you'd rather stay anonymous).
