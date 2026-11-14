@@ -1,0 +1,14 @@
+# Written by Claude Code when it loads the plugin from this folder
+.claude-plugin/types/
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Logs and local scratch
+*.log
+node_modules/
+.mcpb-cache/

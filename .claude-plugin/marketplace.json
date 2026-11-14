@@ -1,0 +1,12 @@
+{
+  "name": "claude-cyberpunk-themes",
+  "owner": { "name": "nocashflow" },
+  "metadata": { "description": "Pixel-art cyberpunk themes for the Claude Code desktop app." },
+  "plugins": [
+    {
+      "name": "cyberpunk-themes",
+      "source": "./",
+      "description": "Seven pixel-art cyberpunk themes for the Claude Code desktop app, switched with /neon."
+    }
+  ]
+}

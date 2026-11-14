@@ -1,0 +1,32 @@
+name: Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Accessibility, safety and assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Contrast, motion, flashing, SVG safety and code capabilities
+        run: npm run audit
+
+      - name: README assets are up to date
+        run: |
+          npm run build:assets
+          git diff --exit-code -- assets || (echo "assets/ is out of date: run npm run build:assets and commit the result." && exit 1)
+
+      - name: Manifests are valid JSON
+        run: |
+          node -e "for (const f of ['.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', 'hooks/hooks.json']) JSON.parse(require('fs').readFileSync(f, 'utf8'))"

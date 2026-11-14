@@ -1,0 +1,16 @@
+name: Theme idea
+description: Suggest a new scene or palette.
+labels: [theme idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The scene
+      description: Where it is, what moves in it, and who the characters are. Original ideas only, no copied art or characters.
+    validations:
+      required: true
+  - type: input
+    id: colour
+    attributes:
+      label: Main colour and mode
+      placeholder: "Teal, dark mode"

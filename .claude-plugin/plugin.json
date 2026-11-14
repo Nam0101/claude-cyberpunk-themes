@@ -1,0 +1,10 @@
+{
+  "name": "cyberpunk-themes",
+  "version": "1.0.0",
+  "description": "Seven pixel-art cyberpunk themes for the Claude Code desktop app: an animated scene behind the chat and a matching palette, switched with /neon.",
+  "author": { "name": "nocashflow", "url": "https://github.com/nocashflow" },
+  "homepage": "https://github.com/nocashflow/claude-cyberpunk-themes",
+  "repository": "https://github.com/nocashflow/claude-cyberpunk-themes",
+  "license": "MIT",
+  "keywords": ["theme", "cyberpunk", "pixel-art", "backdrop", "desktop", "mod"]
+}
