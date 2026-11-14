@@ -4,7 +4,7 @@
 
 # Cyberpunk Themes for Claude Code
 
-**Seven little pixel-art cyberpunk worlds that live behind your chat. One command to switch between them.**
+**Custom Claude Code themes: seven little pixel-art cyberpunk worlds that live behind your chat. One command to switch between them.**
 
 I spend most of my day in the Claude Code desktop app and wanted it to feel less like a tool and more like a place, so I made this.
 
@@ -15,7 +15,7 @@ I spend most of my day in the Claude Code desktop app and wanted it to feel less
 [![Contrast](https://img.shields.io/badge/text%20contrast-WCAG%20AAA-9d8cff?style=flat-square)](#accessibility)
 [![Audit](https://github.com/nocashflow/claude-cyberpunk-themes/actions/workflows/audit.yml/badge.svg)](https://github.com/nocashflow/claude-cyberpunk-themes/actions/workflows/audit.yml)
 
-[Install](#install) · [Themes](#the-themes) · [Usage](#usage) · [Make it yours](#make-it-yours-with-claude) · [Accessibility](#accessibility) · [Security](#security-and-privacy)
+[Website](https://nocashflow.github.io/claude-cyberpunk-themes/) · [Install](#install) · [Themes](#the-themes) · [Usage](#usage) · [Make it yours](#make-it-yours-with-claude) · [FAQ](#faq) · [Security](#security-and-privacy)
 
 </div>
 
@@ -23,7 +23,7 @@ I spend most of my day in the Claude Code desktop app and wanted it to feel less
 
 ## Why I made this
 
-It started with one theme. My room has green lighting, and staring at a plain grey chat all day felt wrong, so I built a little pixel city with two mascots watching the moon from a rooftop. Then I wanted a green one to match the room, and then I couldn't stop.
+Listen, choom. No self-respecting edgerunner jacks in to a plain grey chat window all day. So I chromed up Claude Code with a few districts' worth of neon, and I didn't even have to sell a kidney to a ripperdoc for it. Now every chat has its own little corner of the city humming behind it. Preem, right? (If your code still won't compile, that's a skill issue, not a chrome issue.)
 
 Each theme is two things:
 
@@ -42,7 +42,7 @@ In the Claude Code desktop app, type this in the message box:
 /plugin install cyberpunk-themes --marketplace nocashflow/claude-cyberpunk-themes
 ```
 
-Say `y` to add the marketplace, then pick a scope. I'd go with **user**, so the themes work in every project. Then pick a theme:
+Say `y` to add the marketplace, then pick a scope. I'd go with **user**, so the themes work in every project. It's quicker than a ripperdoc install, and nobody touches your spine. Then pick a theme:
 
 ```
 /neon rooftop
@@ -97,7 +97,7 @@ Say `y` to add the marketplace, then pick a scope. I'd go with **user**, so the 
   </tr>
 </table>
 
-Every scene is animated: what you see above is exactly what the plugin draws. Each theme also recolours the whole app to match.
+Every scene is animated: what you see above is exactly what the plugin draws. Each theme also recolours the whole app to match. Pick your district, choom.
 
 <details>
 <summary><b>Little details to look out for</b></summary>
@@ -122,14 +122,14 @@ Every scene is animated: what you see above is exactly what the plugin draws. Ea
 | `/neon <theme>` | Switches theme: `rooftop`, `alley`, `net`, `clinic`, `badlands`, `blackwall` or `corpo`. |
 | `/neon off` | Goes back to the app's normal look. |
 
-It remembers your pick, so new chats open with the same theme. If a chat was already open before you installed or switched, run `/reload-plugins` once (or just send a message) and the scene will show up.
+It remembers your pick, so new chats open with the same theme. If a chat was already open before you installed or switched, run `/reload-plugins` once (or just send a message) and the scene will show up. Don't be a gonk and spend ten minutes wondering why it's blank. I've been there.
 
 > [!TIP]
 > I always keep the side panel open, so the characters sit in the space between the chat and the panel. They stay in view either way, but they look best like that.
 
 ## Make it yours (with Claude)
 
-This is the fun part. Every theme is just a few hundred lines of TypeScript, and all the pixel art is literally text, so Claude is really good at editing it. You don't need to know how any of it works.
+This is the fun part. Your deck, your chrome. Every theme is just a few hundred lines of TypeScript, and all the pixel art is literally text, so Claude is really good at editing it. You don't need to know how any of it works. Think of Claude as your netrunner: you say what you want, it does the hacking.
 
 **1. Get your own copy and install it from there:**
 
@@ -187,7 +187,7 @@ I care about this a lot. A theme you can't read isn't a theme, it's a wallpaper.
 
 - **Text contrast:** main text is at least **13:1** against every surface in every theme, way past WCAG AAA (7:1). Secondary and muted text are at least **6:1** (AA is 4.5:1).
 - **Reduced motion:** if *reduce motion* is on in your system settings, every scene just shows a still picture.
-- **No flashing:** nothing cycles faster than about once a second, far under the WCAG limit of three flashes a second. The glitches are short and small on purpose.
+- **No flashing:** nothing cycles faster than about once a second, far under the WCAG limit of three flashes a second. The glitches are short and small on purpose. Cyberpsychosis is not a feature.
 - **Readable glass:** the panels over the scene are tinted and blurred, so text never sits directly on busy art.
 - **Light and dark:** Corpo Plaza is the light-mode one. The rest are built for dark mode.
 - **Described:** every scene has a text description for screen readers.
@@ -196,7 +196,7 @@ If something is hard to read for you, please [open an issue](https://github.com/
 
 ## Security and privacy
 
-Short version: this plugin only changes how the app looks. That's it.
+Short version: this plugin only changes how the app looks. That's it. No corpo spyware, no daemons hiding in your deck.
 
 - **Your data:** it doesn't read anything about your work, and it doesn't send anything anywhere. The only thing it saves is which theme you picked.
 - **Permissions:** Claude Code's validator lists every capability the plugin uses:
@@ -251,10 +251,33 @@ npm run build:assets
 
 `build:assets` regenerates the film and previews at the top of this README from the real scenes. Run it whenever you change a scene. `claude plugin validate .` checks the manifests and lists every hook and call the plugin makes. If you want to add a theme properly, [CONTRIBUTING.md](CONTRIBUTING.md) walks through it.
 
+## FAQ
+
+**How do I change the theme in Claude Code?**
+Install the plugin (see [Install](#install)), then type `/neon` and a theme name in the Claude Code desktop app, like `/neon alley`. `/neon` on its own lists all seven, and `/neon off` goes back to the normal look.
+
+**Do the themes work in the Claude chat app?**
+No. They're a Claude Code plugin, so they only show in the **Code tab** of the Claude desktop app. The Chat tab, claude.ai and the mobile app can't load plugins (yet, anyway).
+
+**Do they work in the terminal or VS Code?**
+The `/neon` command works there, but the terminal and the VS Code extension don't draw backdrops, so you'll only see the themes in the desktop app.
+
+**Is it safe to install?**
+Yes. It only changes how the app looks: no network, file or process access, and the one thing it saves is your theme choice. Don't trust me, check it: `claude plugin validate .` lists every call it makes.
+
+**Will the moving scenes distract me while I code?**
+Everything moves slowly and nothing flashes. If you want it fully still, turn on *reduce motion* in your system settings and every scene becomes a still picture.
+
+**Can I make my own Claude Code theme?**
+Yes, that's half the point. Clone the repo, open it in Claude Code and describe the theme you want. See [Make it yours](#make-it-yours-with-claude).
+
+**Which versions does it need?**
+The Claude Code desktop app, v2.1.324 or later.
+
 ## Credits
 
 This is a fan project. It's my love letter to the cyberpunk genre and to *Cyberpunk: Edgerunners* in particular. The characters are my own pixel mascots built on the shape of the Claude Code mascot, just dressed up as people you might recognise. I didn't use any artwork, logos, fonts or names from the game, the show or anyone else.
 
 It's unofficial, and not affiliated with or endorsed by Anthropic, CD PROJEKT RED or Studio Trigger. *Cyberpunk* and *Cyberpunk: Edgerunners* are trademarks of their owners.
 
-Released under the [MIT License](LICENSE). Have fun with it.
+Released under the [MIT License](LICENSE). Have fun with it, stay preem, and go flatline some bugs, choom.

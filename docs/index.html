@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Claude Code themes: 7 animated cyberpunk themes for the desktop app</title>
+<meta name="description" content="Seven pixel-art cyberpunk themes for the Claude Code desktop app. Each one puts an animated scene behind your chat and recolours the app. Free, open source, one command to switch.">
+<link rel="canonical" href="https://nocashflow.github.io/claude-cyberpunk-themes/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cyberpunk Themes for Claude Code">
+<meta property="og:url" content="https://nocashflow.github.io/claude-cyberpunk-themes/">
+<meta property="og:title" content="Cyberpunk themes for Claude Code">
+<meta property="og:description" content="Seven animated pixel-art scenes with matching colours for the Claude Code desktop app. Free and open source.">
+<meta property="og:image" content="https://nocashflow.github.io/claude-cyberpunk-themes/share.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The seven Claude Code cyberpunk themes side by side">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cyberpunk themes for Claude Code">
+<meta name="twitter:description" content="Seven animated pixel-art scenes with matching colours for the Claude Code desktop app.">
+<meta name="twitter:image" content="https://nocashflow.github.io/claude-cyberpunk-themes/share.png">
+<link rel="icon" href="icon.png" type="image/png">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Cyberpunk Themes for Claude Code",
+      "alternateName": "claude-cyberpunk-themes",
+      "description": "Seven pixel-art cyberpunk themes for the Claude Code desktop app. Each puts an animated scene behind the chat and recolours the app.",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Claude Code plugin",
+      "operatingSystem": "Windows, macOS",
+      "softwareVersion": "1.0.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://nocashflow.github.io/claude-cyberpunk-themes/",
+      "downloadUrl": "https://github.com/nocashflow/claude-cyberpunk-themes",
+      "codeRepository": "https://github.com/nocashflow/claude-cyberpunk-themes",
+      "image": "https://nocashflow.github.io/claude-cyberpunk-themes/share.png",
+      "author": { "@type": "Person", "name": "nocashflow", "url": "https://github.com/nocashflow" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I change the theme in Claude Code?", "acceptedAnswer": { "@type": "Answer", "text": "Install the plugin, then type /neon and a theme name in the Claude Code desktop app, for example /neon alley. /neon on its own lists all seven, and /neon off goes back to the normal look." } },
+        { "@type": "Question", "name": "Do the themes work in the Claude chat app?", "acceptedAnswer": { "@type": "Answer", "text": "No. They are a Claude Code plugin, so they only show in the Code tab of the Claude desktop app. The Chat tab, claude.ai and the mobile app can't load plugins." } },
+        { "@type": "Question", "name": "Do they work in the terminal or VS Code?", "acceptedAnswer": { "@type": "Answer", "text": "The /neon command works there, but the terminal and the VS Code extension don't draw backdrops, so you only see the themes in the desktop app." } },
+        { "@type": "Question", "name": "Is the plugin safe to install?", "acceptedAnswer": { "@type": "Answer", "text": "It only changes how the app looks. It has no network, file or process access, and the one thing it saves is your theme choice. Run claude plugin validate on it to see every call it makes." } },
+        { "@type": "Question", "name": "Will the moving scenes be distracting?", "acceptedAnswer": { "@type": "Answer", "text": "Everything moves slowly and nothing flashes. With reduce motion on in your system settings, every scene becomes a still picture." } },
+        { "@type": "Question", "name": "Can I make my own Claude Code theme?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Clone the repository, open it in Claude Code and describe the theme you want. The characters are text maps, so Claude can redraw them for you. It's MIT licensed." } },
+        { "@type": "Question", "name": "Which Claude Code versions are supported?", "acceptedAnswer": { "@type": "Answer", "text": "The Claude Code desktop app, version 2.1.324 or later." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <nav class="bar__in" aria-label="Main">
+    <a class="bar__brand" href="#top"><img src="icon.png" width="22" height="22" alt="">Cyberpunk Themes</a>
+    <ul class="bar__links">
+      <li><a href="#worlds">Themes</a></li>
+      <li><a href="#install">Install</a></li>
+      <li><a href="#make">Customise</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://github.com/nocashflow/claude-cyberpunk-themes">GitHub</a></li>
+    </ul>
+    <a class="pill pill--small" href="#install">Install</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <div class="hero__words">
+      <h1 id="hero-h" class="hero__line">Seven cities. <br>Behind your chat.</h1>
+      <p class="hero__sub">Cyberpunk Themes for Claude Code: animated pixel-art scenes and a matching palette for the desktop app. Free, open source, one command.</p>
+      <div class="cmd" data-copy-box>
+        <code class="cmd__text">/plugin install cyberpunk-themes <span class="nb">--marketplace</span> <span class="nb">nocashflow/claude-cyberpunk-themes</span></code>
+        <button class="cmd__copy" type="button" data-copy>Copy</button>
+      </div>
+      <a class="pill hero__pill" href="#install">Install</a>
+    </div>
+
+    <div class="stage" data-stage data-theme="rooftop">
+      <div class="win" role="img" aria-label="A Claude Code window showing the selected theme: an animated pixel-art scene behind a frosted conversation" aria-describedby="stage-name">
+        <div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__title">Claude Code</span><span class="win__theme"><span id="stage-name" data-stage-name>Neon Rooftop</span> <code class="win__cmd" data-stage-cmd>/neon rooftop</code></span></div>
+        <div class="win__view">
+          <img class="win__scene is-on" data-scene src="themes/rooftop.svg" alt="">
+          <div class="glass" data-glass>
+            <p class="glass__ask" data-ask>Can you fix the flaky login test?</p>
+            <div class="glass__reply">
+              <span class="glass__dot" aria-hidden="true"></span>
+              <div>
+                <p data-reply>Found it: a race on the session cookie. Patched, then re-ran it 50 times. All green.</p>
+                <pre class="glass__diff"><code><span class="d-del" data-del>- await page.click('#login')</span><span class="d-add" data-add>+ await page.waitForResponse('/api/session')</span></code></pre>
+                <p class="glass__meta">Edited <span class="glass__file" data-file>login.spec.ts</span>, ran 1 command</p>
+              </div>
+            </div>
+            <p class="glass__input">Reply to Claude…</p>
+          </div>
+        </div>
+      </div>
+      <div class="picker" role="group" aria-label="Pick a theme to preview">
+        <button type="button" class="picker__btn" data-pick="rooftop" aria-pressed="true"><span style="--c:#b48cff"></span>Rooftop</button>
+        <button type="button" class="picker__btn" data-pick="alley" aria-pressed="false"><span style="--c:#7ff0c4"></span>Alley</button>
+        <button type="button" class="picker__btn" data-pick="net" aria-pressed="false"><span style="--c:#5cc8ff"></span>Net</button>
+        <button type="button" class="picker__btn" data-pick="clinic" aria-pressed="false"><span style="--c:#4fe0b5"></span>Clinic</button>
+        <button type="button" class="picker__btn" data-pick="badlands" aria-pressed="false"><span style="--c:#ff9f4a"></span>Badlands</button>
+        <button type="button" class="picker__btn" data-pick="blackwall" aria-pressed="false"><span style="--c:#ff4f6d"></span>Blackwall</button>
+        <button type="button" class="picker__btn" data-pick="corpo" aria-pressed="false"><span style="--c:#f2f2f5"></span>Corpo</button>
+        <button type="button" class="picker__pause" data-auto aria-pressed="false" aria-label="Pause the theme tour"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="i-pause" d="M5 3.5v9M11 3.5v9"/><path class="i-play" d="M5 3.5v9l7-4.5z"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="say" aria-labelledby="say-h">
+    <h2 id="say-h" class="say__big">The whole app changes with it.</h2>
+    <p class="say__sub">Each theme draws its scene behind the conversation, then retunes the panels, text, links, code and diffs to match. Your work stays exactly where it was.</p>
+  </section>
+
+  <section class="worlds" id="worlds" aria-labelledby="worlds-h">
+    <h2 id="worlds-h" class="sec-h">The seven themes.</h2>
+    <p class="sec-sub">Six for dark mode, one for light. Pick your district, choom.</p>
+    <div class="reel" data-reel tabindex="0" aria-label="The seven themes, one at a time">
+      <article class="world" id="theme-rooftop"><img src="themes/rooftop-still.svg" data-live="themes/rooftop.svg" alt="Neon Rooftop: a purple pixel city at night, two mascots on a roof watching the moon" loading="lazy"><div class="world__cap"><h3>Neon Rooftop</h3><p>Two mascots watch the moon while an ad blimp drifts past.</p><code>/neon rooftop</code></div></article>
+      <article class="world" id="theme-alley"><img src="themes/alley-still.svg" data-live="themes/alley.svg" alt="Phosphor Alley: a rainy green alley, two mascots under an LED umbrella on a power line" loading="lazy"><div class="world__cap"><h3>Phosphor Alley</h3><p>Green rain and an LED umbrella on a power line.</p><code>/neon alley</code></div></article>
+      <article class="world" id="theme-net"><img src="themes/net-still.svg" data-live="themes/net.svg" alt="Deep Net: blue cyberspace, a hexagon wall with a glowing breach and a netrunner on a platform" loading="lazy"><div class="world__cap"><h3>Deep Net</h3><p>A netrunner breaks through a wall of ICE.</p><code>/neon net</code></div></article>
+      <article class="world" id="theme-clinic"><img src="themes/clinic-still.svg" data-live="themes/clinic.svg" alt="Ripperdoc: a green clinic, a doc fitting a chrome arm under a surgical lamp" loading="lazy"><div class="world__cap"><h3>Ripperdoc</h3><p>The doc fits a chrome arm. The monitor reads 72.</p><code>/neon clinic</code></div></article>
+      <article class="world" id="theme-badlands"><img src="themes/badlands-still.svg" data-live="themes/badlands.svg" alt="Badlands: an orange desert at dusk, a striped sun and two nomads by their car" loading="lazy"><div class="world__cap"><h3>Badlands</h3><p>Two nomads by their car under a striped sun.</p><code>/neon badlands</code></div></article>
+      <article class="world" id="theme-blackwall"><img src="themes/blackwall-still.svg" data-live="themes/blackwall.svg" alt="Blackwall: a black wall of code with red cracks, red eyes and a hooded runner" loading="lazy"><div class="world__cap"><h3>Blackwall</h3><p>Near-black with one red. Something is watching through the cracks.</p><code>/neon blackwall</code></div></article>
+      <article class="world world--light" id="theme-corpo"><img src="themes/corpo-still.svg" data-live="themes/corpo.svg" alt="Corpo Plaza: a white plaza with glass towers, a red hologram and a corpo in a suit" loading="lazy"><div class="world__cap"><h3>Corpo Plaza</h3><p>The light-mode one. Spotless, and a little too perfect.</p><code>/neon corpo</code></div></article>
+    </div>
+    <div class="reel__nav">
+      <button class="reel__btn" type="button" data-reel-prev aria-label="Previous theme"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button>
+      <button class="reel__btn" type="button" data-reel-next aria-label="Next theme"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg></button>
+    </div>
+  </section>
+
+  <section class="install" id="install" aria-labelledby="install-h">
+    <h2 id="install-h" class="sec-h">One line to install.</h2>
+    <p class="sec-sub">Quicker than a ripperdoc, and nobody touches your spine.</p>
+    <div class="cmd cmd--big" data-copy-box>
+      <code class="cmd__text">/plugin install cyberpunk-themes <span class="nb">--marketplace</span> <span class="nb">nocashflow/claude-cyberpunk-themes</span></code>
+      <button class="cmd__copy" type="button" data-copy>Copy</button>
+    </div>
+    <ol class="steps">
+      <li><strong>Paste it</strong> into the message box of the Claude Code desktop app and say <code>y</code> to the marketplace.</li>
+      <li><strong>Pick a theme</strong> with <code>/neon alley</code>. <code>/neon</code> on its own lists all seven.</li>
+      <li><strong>Switch whenever</strong> you like. Your pick sticks, and <code>/neon off</code> brings the normal look back.</li>
+    </ol>
+  </section>
+
+  <section class="trust" aria-labelledby="trust-h">
+    <div class="trust__words">
+      <h2 id="trust-h" class="sec-h">It only changes how Claude Code looks.</h2>
+      <p>No network, files, processes, models or tools. The only thing it saves is the name of your theme. Don't take my word for it: Claude Code's own validator lists every call, and anyone can run it. No corpo spyware here.</p>
+      <p class="trust__note">Text contrast is 13:1 or better in every theme, and with reduce motion on, every scene holds still.</p>
+    </div>
+    <pre class="term" aria-label="Output of claude plugin validate"><code><span class="t-dim">$</span> claude plugin validate .
+<span class="t-dim">  hooks:</span> session.start, command.run{command=neon},
+         ui.render{component=Backdrop}
+<span class="t-dim">  calls:</span> $.command.register, $.store.get, $.store.set,
+         $.theme.clear, $.theme.set, $.ui.resolve,
+         $.ui.status, $.ui.toast
+<span class="t-ok">✔ Validation passed</span></code></pre>
+  </section>
+
+  <section class="make" id="make" aria-labelledby="make-h">
+    <div class="make__words">
+      <h2 id="make-h" class="sec-h">Ask Claude to change any theme.</h2>
+      <p>The characters are text maps, one letter per pixel, so Claude can redraw them for you. Clone the repo, open it in Claude Code and say what you want: new mascots, new colours, a whole new district.</p>
+      <a class="more" href="https://github.com/nocashflow/claude-cyberpunk-themes#make-it-yours-with-claude">Read the customising guide <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M2 2l4 4-4 4"/></svg></a>
+    </div>
+    <div class="make__show">
+      <pre class="map" aria-label="The netrunner from Deep Net as a text map"><code><span class="m-k">.k</span><span class="m-h">HHHHHHHH</span><span class="m-k">k.</span>
+<span class="m-h">.HHHHHHHHHH.</span>
+<span class="m-h">.H</span><span class="m-b">BBBBBBBB</span><span class="m-h">H.</span>
+<span class="m-h">.H</span><span class="m-b">B</span><span class="m-e">E</span><span class="m-b">BBBB</span><span class="m-e">E</span><span class="m-b">B</span><span class="m-h">H.</span>
+<span class="m-h">.H</span><span class="m-b">B</span><span class="m-e">E</span><span class="m-k">c</span><span class="m-b">BB</span><span class="m-k">c</span><span class="m-e">E</span><span class="m-b">B</span><span class="m-h">H.</span></code></pre>
+      <div class="ask">
+        <p class="ask__me">Swap the rooftop mascots for a cat and a robot, same pixel style.</p>
+        <p class="ask__claude">Done. I redrew both as 12-wide text maps in <code>scene.ts</code> and kept their spots by the moon. Run <code>/reload-plugins</code> to see them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h" class="sec-h">Questions.</h2>
+    <dl class="qa">
+      <div><dt>How do I change the theme in Claude Code?</dt><dd>Install the plugin, then type <code>/neon</code> and a theme name in the Claude Code desktop app, for example <code>/neon alley</code>. <code>/neon</code> on its own lists all seven, and <code>/neon off</code> goes back to the normal look.</dd></div>
+      <div><dt>Do the themes work in the Claude chat app?</dt><dd>No. They're a Claude Code plugin, so they only show in the Code tab of the Claude desktop app. The Chat tab, claude.ai and the mobile app can't load plugins.</dd></div>
+      <div><dt>Do they work in the terminal or VS Code?</dt><dd>The <code>/neon</code> command works there, but the terminal and the VS Code extension don't draw backdrops, so you only see the themes in the desktop app.</dd></div>
+      <div><dt>Is the plugin safe to install?</dt><dd>It only changes how the app looks. It has no network, file or process access, and the one thing it saves is your theme choice. Run <code>claude plugin validate</code> on it to see every call it makes.</dd></div>
+      <div><dt>Will the moving scenes be distracting?</dt><dd>Everything moves slowly and nothing flashes. With reduce motion on in your system settings, every scene becomes a still picture.</dd></div>
+      <div><dt>Can I make my own Claude Code theme?</dt><dd>Yes. Clone the repo, open it in Claude Code and describe the theme you want. The characters are text maps, so Claude can redraw them for you. It's MIT licensed.</dd></div>
+      <div><dt>Which Claude Code versions are supported?</dt><dd>The Claude Code desktop app, version 2.1.324 or later.</dd></div>
+    </dl>
+  </section>
+
+  <section class="close" aria-labelledby="close-h">
+    <h2 id="close-h" class="close__h">Seven cities. One command.</h2>
+    <a class="pill" href="#install">Install the themes</a>
+    <p class="close__sub">Free and MIT licensed. Stay preem, choom.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>© 2026 nocashflow · <a href="https://github.com/nocashflow/claude-cyberpunk-themes/blob/main/LICENSE">MIT License</a> · <a href="https://github.com/nocashflow/claude-cyberpunk-themes">GitHub</a> · <a href="https://github.com/nocashflow/claude-cyberpunk-themes/blob/main/SECURITY.md">Security</a></p>
+  <p>An unofficial fan project, not affiliated with Anthropic, CD PROJEKT RED or Studio Trigger.</p>
+</footer>
+
+<script src="site.js" defer></script>
+</body>
+</html>

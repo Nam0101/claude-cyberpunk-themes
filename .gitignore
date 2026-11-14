@@ -12,3 +12,12 @@ Thumbs.db
 *.log
 node_modules/
 .mcpb-cache/
+
+# taste-skill check output for the landing page
+docs/.taste-skill/
+docs/shots/
+
+# Local design records for Claude skills; kept on this machine, not published
+PRODUCT.md
+DESIGN.md
+.impeccable/

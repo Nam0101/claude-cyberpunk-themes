@@ -13,5 +13,6 @@ All notable changes to this project are documented here. The format follows [Kee
 - Characters placed in the space between the conversation and an open side panel.
 - `scripts/audit.mjs`: contrast, reduced-motion, flash-rate, SVG-safety and code-capability checks, run in CI.
 - `scripts/build-assets.mjs`: renders the README's launch film and theme previews from the plugin's own scenes.
+- A landing page on GitHub Pages (`docs/`): a live theme picker, the gallery, install steps and an FAQ, with search and social metadata.
 
 [1.0.0]: https://github.com/nocashflow/claude-cyberpunk-themes/releases/tag/v1.0.0

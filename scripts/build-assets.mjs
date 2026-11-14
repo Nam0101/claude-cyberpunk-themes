@@ -1,5 +1,6 @@
 // Builds the visuals in the README straight from the plugin's own scenes, so they never drift out of date:
 //   assets/themes/<id>.svg  each theme's live scene, exactly as the app draws it
+//   docs/themes/<id>.svg    the same scenes for the landing page (GitHub Pages only serves docs/)
 //   assets/launch.svg       the launch film: a title card, every theme with an example chat, then all of them together
 //   node --import ./scripts/ts-ext.mjs scripts/build-assets.mjs
 
@@ -29,6 +30,16 @@ const GLASS = {
 }
 
 for (const scene of SCENES) writeFileSync(new URL(`themes/${scene.id}.svg`, out), scene.build())
+
+// The landing page in docs/ (GitHub Pages serves only that folder) shows the same scenes.
+const site = new URL('../docs/themes/', import.meta.url)
+mkdirSync(site, { recursive: true })
+for (const scene of SCENES) {
+  const svg = scene.build()
+  writeFileSync(new URL(`${scene.id}.svg`, site), svg)
+  // A still of the same scene, every animation at rest, for places that should not move (gallery tiles, reduced motion).
+  writeFileSync(new URL(`${scene.id}-still.svg`, site), svg.replace('</style>', '*{animation:none!important}</style>'))
+}
 
 // The film: 1600 by 900. A title, then each theme for SEGMENT seconds, then the gallery; it loops.
 const W = 1600
