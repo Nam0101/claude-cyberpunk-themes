@@ -13,14 +13,14 @@ Hey, thanks for wanting to help out! Bug reports, theme ideas and pull requests 
 
 The easiest way is honestly to open the repo in Claude Code and describe the theme you want. If you'd rather do it by hand, here's the path:
 
-1. **Write the scene.** Add `hooks/<name>.ts` with a function that returns the SVG string. The helpers in `hooks/kit.ts` (`figure`, `sprite`, `rain`, `specks`, `grain`, `svgRoot`) and the set pieces in `hooks/extras.ts` do most of the heavy lifting.
+1. **Write the scene.** Add `plugins/cyberpunk-themes/hooks/<name>.ts` with a function that returns the SVG string. The helpers in `plugins/cyberpunk-themes/hooks/kit.ts` (`figure`, `sprite`, `rain`, `specks`, `grain`, `svgRoot`) and the set pieces in `plugins/cyberpunk-themes/hooks/extras.ts` do most of the heavy lifting.
    - Keep the main subject away from the middle, where the chat sits.
    - Put the characters at `PAIR_LEFT` and `PAIR_RIGHT`, so they stay visible next to an open side panel.
    - Keep the scene under 131,072 characters. That's Claude Code's limit, not mine.
-2. **Add the palette** to `hooks/palettes.ts`:
+2. **Add the palette** to `plugins/cyberpunk-themes/hooks/palettes.ts`:
    - four surfaces, three text tones and five accents;
    - please keep `danger` a red, `success` a green and `warning` an amber, so they still mean something.
-3. **Register it** in `hooks/register.tsx` and add it to `scripts/scenes.mjs`. If you want it on the website too, add it to `THEMES` in `docs/site.js` and to the picker and gallery in `docs/index.html`.
+3. **Register it** in `plugins/cyberpunk-themes/hooks/register.tsx` and add it to `scripts/scenes.mjs`. If you want it on the website too, add it to `THEMES` in `docs/site.js` and to the picker and gallery in `docs/index.html`.
 4. **Run the checks:**
 
    ```bash
@@ -32,7 +32,7 @@ The easiest way is honestly to open the repo in Claude Code and describe the the
    ```
 
    ```bash
-   claude plugin validate .
+   claude plugin validate plugins/cyberpunk-themes
    ```
 
 5. **Try it for real** in the desktop app before you open a pull request. Check:

@@ -12,8 +12,8 @@
 //   - The plugin code must never reach the network, files, processes, models or tools, or run code from a string.
 
 import { readFileSync, readdirSync } from 'node:fs'
-import { makeColors } from '../hooks/make-colors.js'
-import { PALETTES } from '../hooks/palettes.ts'
+import { makeColors } from '../plugins/cyberpunk-themes/hooks/make-colors.js'
+import { PALETTES } from '../plugins/cyberpunk-themes/hooks/palettes.ts'
 import { SCENES } from './scenes.mjs'
 
 let failures = 0
@@ -67,9 +67,9 @@ for (const scene of SCENES) {
 
 console.log('Plugin code')
 const risky = /fetch\(|XMLHttpRequest|WebSocket|EventSource|\$\.(fs|process|model|agent|tool|clock)\b|\beval\(|new Function|\bimport\(|\brequire\(|https?:\/\/(?!www\.w3\.org\/2000\/svg)|postMessage|setTimeout|setInterval|globalThis/
-for (const file of readdirSync(new URL('../hooks/', import.meta.url))) {
+for (const file of readdirSync(new URL('../plugins/cyberpunk-themes/hooks/', import.meta.url))) {
   if (!/\.(ts|tsx|js)$/.test(file) || file.endsWith('.d.ts')) continue
-  const source = readFileSync(new URL(`../hooks/${file}`, import.meta.url), 'utf8')
+  const source = readFileSync(new URL(`../plugins/cyberpunk-themes/hooks/${file}`, import.meta.url), 'utf8')
   const hit = source.split('\n').findIndex(line => risky.test(line))
   if (hit >= 0) fail(`${file}:${hit + 1} reaches outside the plugin: ${source.split('\n')[hit].trim().slice(0, 80)}`)
   else pass(`${file}`)

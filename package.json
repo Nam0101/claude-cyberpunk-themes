@@ -1,13 +1,14 @@
 {
   "name": "claude-cyberpunk-themes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Development scripts for the cyberpunk-themes Claude Code plugin. The plugin itself has no dependencies.",
   "type": "module",
   "engines": { "node": ">=23.6" },
   "scripts": {
     "audit": "node --import ./scripts/ts-ext.mjs scripts/audit.mjs",
-    "build:assets": "node --import ./scripts/ts-ext.mjs scripts/build-assets.mjs"
+    "build:assets": "node --import ./scripts/ts-ext.mjs scripts/build-assets.mjs",
+    "test": "node scripts/test.mjs"
   },
   "license": "MIT"
 }

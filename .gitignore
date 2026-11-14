@@ -1,5 +1,5 @@
 # Written by Claude Code when it loads the plugin from this folder
-.claude-plugin/types/
+plugins/*/.claude-plugin/types/
 
 # Operating system and editor files
 .DS_Store

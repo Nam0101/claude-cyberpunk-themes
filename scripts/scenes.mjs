@@ -1,11 +1,11 @@
 // The list of themes the scripts loop over. If you add a theme, add it here too.
-import { neonRooftopSvg } from '../hooks/scene.ts'
-import { phosphorAlleySvg } from '../hooks/alley.ts'
-import { deepNetSvg } from '../hooks/deepnet.ts'
-import { ripperdocSvg } from '../hooks/ripperdoc.ts'
-import { badlandsSvg } from '../hooks/badlands.ts'
-import { blackwallSvg } from '../hooks/blackwall.ts'
-import { corpoPlazaSvg } from '../hooks/corpo.ts'
+import { neonRooftopSvg } from '../plugins/cyberpunk-themes/hooks/scene.ts'
+import { phosphorAlleySvg } from '../plugins/cyberpunk-themes/hooks/alley.ts'
+import { deepNetSvg } from '../plugins/cyberpunk-themes/hooks/deepnet.ts'
+import { ripperdocSvg } from '../plugins/cyberpunk-themes/hooks/ripperdoc.ts'
+import { badlandsSvg } from '../plugins/cyberpunk-themes/hooks/badlands.ts'
+import { blackwallSvg } from '../plugins/cyberpunk-themes/hooks/blackwall.ts'
+import { corpoPlazaSvg } from '../plugins/cyberpunk-themes/hooks/corpo.ts'
 
 export const SCENES = [
   { id: 'rooftop', title: 'Neon Rooftop', colour: 'Purple', mode: 'dark', build: neonRooftopSvg },

@@ -131,21 +131,7 @@ It remembers your pick, so new chats open with the same theme. If a chat was alr
 
 This is the fun part. Your deck, your chrome. Every theme is just a few hundred lines of TypeScript, and all the pixel art is literally text, so Claude is really good at editing it. You don't need to know how any of it works. Think of Claude as your netrunner: you say what you want, it does the hacking.
 
-**1. Get your own copy and install it from there:**
-
-```bash
-git clone https://github.com/nocashflow/claude-cyberpunk-themes
-```
-
-```bash
-claude plugin marketplace add ./claude-cyberpunk-themes
-```
-
-```bash
-claude plugin install cyberpunk-themes@claude-cyberpunk-themes --scope user
-```
-
-(If you already installed the GitHub version, uninstall it first so you don't have two.)
+**1. Get your own copy.** Fork this repo on GitHub and clone your fork to your machine, with GitHub Desktop or plain git, whichever you like. Then open that folder in Claude Code and ask it to *"install this plugin from this folder instead of the GitHub version"*. It'll swap your install over to your copy, so you don't end up with two.
 
 **2. Open the folder in Claude Code and just ask.** Some things I've tried or would try:
 
@@ -164,10 +150,10 @@ A few things that help Claude (and you) find your way around:
 
 | If you want to change… | Look in |
 | --- | --- |
-| A theme's colours | `hooks/palettes.ts` |
-| A scene, its characters or its animations | the theme's own file in `hooks/` (`scene.ts` is Neon Rooftop, `alley.ts` is Phosphor Alley, the rest are named after their theme) |
-| Shared stuff like flying cars, signs, the blimp | `hooks/extras.ts` |
-| The `/neon` command or adding a new theme to the list | `hooks/register.tsx` |
+| A theme's colours | `plugins/cyberpunk-themes/hooks/palettes.ts` |
+| A scene, its characters or its animations | the theme's own file in `plugins/cyberpunk-themes/hooks/` (`scene.ts` is Neon Rooftop, `alley.ts` is Phosphor Alley, the rest are named after their theme) |
+| Shared stuff like flying cars, signs, the blimp | `plugins/cyberpunk-themes/hooks/extras.ts` |
+| The `/neon` command or adding a new theme to the list | `plugins/cyberpunk-themes/hooks/register.tsx` |
 
 The characters are drawn as little text maps where every letter is one coloured square. This is the netrunner from Deep Net:
 
@@ -199,6 +185,11 @@ If something is hard to read for you, please [open an issue](https://github.com/
 Short version: this plugin only changes how the app looks. That's it. No corpo spyware, no daemons hiding in your deck.
 
 - **Your data:** it doesn't read anything about your work, and it doesn't send anything anywhere. The only thing it saves is which theme you picked.
+- **What it sends, and where:** nothing ever leaves your machine. It only passes things to Claude Code itself:
+  - the theme you picked (colours plus the name of the scene) goes to `$.theme.set`;
+  - the scene's SVG goes to the app's own `Svg` element so it can draw it;
+  - the theme name is stored with `$.store`, on your machine;
+  - the list of themes goes back to you as the reply to `/neon`.
 - **Permissions:** Claude Code's validator lists every capability the plugin uses:
   - registering `/neon`;
   - saving your theme choice;
@@ -221,20 +212,31 @@ command.run   ──▶ /neon <theme>: remember it and set the theme again
 ui.render     ──▶ Backdrop: draw that theme's SVG behind the chat
 ```
 
-- **Palettes** live in [`hooks/palettes.ts`](hooks/palettes.ts). You give `makeColors` a handful of colours (four surfaces, three text shades, five accents). It works out the hundred or so the app needs, and tells you if anything won't be readable.
-- **Scenes** are plain functions that return an SVG string, built from the text-map pixel art in [`hooks/kit.ts`](hooks/kit.ts), with shared bits in [`hooks/extras.ts`](hooks/extras.ts). The same input always gives the same picture.
+What each hook does, exactly:
+
+- **`session.start`** registers `/neon`, reads the theme you saved, and sets it. If you never picked one, it uses Neon Rooftop. If you turned it off, it does nothing. Then it lets the session carry on as normal.
+- **`command.run`** (only for `/neon`) answers `/neon`, `/neon <theme>` and `/neon off`. It never sees or changes any other command, and never runs one itself.
+- **`ui.render`** (only for `Backdrop`) draws the scene for this plugin's own backdrop. Any other plugin's backdrop, and every other part of the app, gets passed straight through untouched.
+
+- **Palettes** live in [`palettes.ts`](plugins/cyberpunk-themes/hooks/palettes.ts). You give `makeColors` a handful of colours (four surfaces, three text shades, five accents). It works out the hundred or so the app needs, and tells you if anything won't be readable.
+- **`make-colors.js`** is Claude Code's own colour helper, copied in unchanged from its mod kit. The long strings of hex in it (around line 607, for example) are the app's grey and colour scales written out back to back: colour values, not encoded data.
+- **Scenes** are plain functions that return an SVG string, built from the text-map pixel art in [`kit.ts`](plugins/cyberpunk-themes/hooks/kit.ts), with shared bits in [`extras.ts`](plugins/cyberpunk-themes/hooks/extras.ts). The same input always gives the same picture.
 
 ```
-.claude-plugin/        plugin and marketplace manifests
-hooks/
-  register.tsx         the /neon command, applying the theme, drawing the backdrop
-  palettes.ts          every theme's colours
-  kit.ts  extras.ts    pixel helpers and shared cyberpunk pieces
-  scene.ts  alley.ts  deepnet.ts  ripperdoc.ts  badlands.ts  blackwall.ts  corpo.ts
+.claude-plugin/
+  marketplace.json       the marketplace: lists the plugin below
+plugins/cyberpunk-themes/  the plugin itself, the only part that gets installed
+  .claude-plugin/        plugin manifest and icon
+  hooks/
+    register.tsx         the /neon command, applying the theme, drawing the backdrop
+    palettes.ts          every theme's colours
+    kit.ts  extras.ts    pixel helpers and shared cyberpunk pieces
+    scene.ts  alley.ts  deepnet.ts  ripperdoc.ts  badlands.ts  blackwall.ts  corpo.ts
 scripts/
-  audit.mjs            accessibility and safety checks (runs on every push)
-  build-assets.mjs     renders the launch film and previews in this README
-assets/                generated: launch.svg and themes/*.svg
+  audit.mjs              accessibility and safety checks (runs on every push)
+  build-assets.mjs       renders the launch film and previews in this README
+assets/                  generated: launch.svg and themes/*.svg
+docs/                    the website (GitHub Pages)
 ```
 
 ## Development
@@ -249,7 +251,7 @@ npm run audit
 npm run build:assets
 ```
 
-`build:assets` regenerates the film and previews at the top of this README from the real scenes. Run it whenever you change a scene. `claude plugin validate .` checks the manifests and lists every hook and call the plugin makes. If you want to add a theme properly, [CONTRIBUTING.md](CONTRIBUTING.md) walks through it.
+`build:assets` regenerates the film and previews at the top of this README from the real scenes. Run it whenever you change a scene. `claude plugin validate plugins/cyberpunk-themes` checks the manifests and lists every hook and call the plugin makes. If you want to add a theme properly, [CONTRIBUTING.md](CONTRIBUTING.md) walks through it.
 
 ## FAQ
 
@@ -263,7 +265,7 @@ No. They're a Claude Code plugin, so they only show in the **Code tab** of the C
 The `/neon` command works there, but the terminal and the VS Code extension don't draw backdrops, so you'll only see the themes in the desktop app.
 
 **Is it safe to install?**
-Yes. It only changes how the app looks: no network, file or process access, and the one thing it saves is your theme choice. Don't trust me, check it: `claude plugin validate .` lists every call it makes.
+Yes. It only changes how the app looks: no network, file or process access, and the one thing it saves is your theme choice. Don't trust me, check it: `claude plugin validate plugins/cyberpunk-themes` lists every call it makes.
 
 **Will the moving scenes distract me while I code?**
 Everything moves slowly and nothing flashes. If you want it fully still, turn on *reduce motion* in your system settings and every scene becomes a still picture.

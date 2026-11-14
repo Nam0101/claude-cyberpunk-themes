@@ -5,7 +5,7 @@
 //   node --import ./scripts/ts-ext.mjs scripts/build-assets.mjs
 
 import { mkdirSync, writeFileSync } from 'node:fs'
-import { PALETTES } from '../hooks/palettes.ts'
+import { PALETTES } from '../plugins/cyberpunk-themes/hooks/palettes.ts'
 import { SCENES } from './scenes.mjs'
 
 const out = new URL('../assets/', import.meta.url)

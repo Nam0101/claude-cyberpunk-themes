@@ -1,4 +1,4 @@
-// Makes the plugin icon (.claude-plugin/icon.png): the mascot in a visor, drawn from a 16 by 16 map and
+// Makes the plugin icon (plugins/cyberpunk-themes/.claude-plugin/icon.png, also used as docs/icon.png): the mascot in a visor, drawn from a 16 by 16 map and
 // scaled up to 512 by 512. Just Node and zlib, no image libraries needed.
 //   node scripts/build-icon.mjs
 
@@ -77,5 +77,5 @@ const png = Buffer.concat([
   chunk('IDAT', deflateSync(raw, { level: 9 })),
   chunk('IEND', Buffer.alloc(0)),
 ])
-writeFileSync(new URL('../.claude-plugin/icon.png', import.meta.url), png)
+for (const out of ['../plugins/cyberpunk-themes/.claude-plugin/icon.png', '../docs/icon.png']) writeFileSync(new URL(out, import.meta.url), png)
 console.log(`icon.png ${SIZE}x${SIZE}, ${(png.length / 1024).toFixed(1)} KB`)

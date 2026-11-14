@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-11-15
+
+### Fixed
+
+- Sessions where a theme can't be drawn (the terminal, for one) now start cleanly. Before, they showed a "session.start hook skipped" line and `/neon` went missing.
+- Stopped sending `overrideColorScheme`, which the desktop app ignores and some Claude Code builds refuse. Each palette already says whether it's light or dark, so nothing looks different.
+
+### Changed
+
+- The plugin now lives in its own folder, `plugins/cyberpunk-themes/`. Installs only get the plugin, not the website, the README film or the build scripts. The install command is the same.
+- Every theme call is made directly in its hook, so the plugin directory can check exactly what it does.
+- The plugin's README says what each hook does and what it sends where (nothing leaves your machine).
+- Added `npm test`, which runs the plugin against Claude Code's own engine.
+
 ## [1.0.0] - 2026-11-14
 
 ### Added
@@ -15,4 +29,5 @@ All notable changes to this project are documented here. The format follows [Kee
 - `scripts/build-assets.mjs`: renders the README's launch film and theme previews from the plugin's own scenes.
 - A landing page on GitHub Pages (`docs/`): a live theme picker, the gallery, install steps and an FAQ, with search and social metadata.
 
+[1.0.1]: https://github.com/nocashflow/claude-cyberpunk-themes/releases/tag/v1.0.1
 [1.0.0]: https://github.com/nocashflow/claude-cyberpunk-themes/releases/tag/v1.0.0

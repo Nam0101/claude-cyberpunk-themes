@@ -2,7 +2,7 @@
 
 ## What this plugin can actually do
 
-Not much, and that's on purpose. It only changes how the Claude Code desktop app looks. If you run `claude plugin validate .`, Claude Code lists every capability the plugin uses:
+Not much, and that's on purpose. It only changes how the Claude Code desktop app looks. If you run `claude plugin validate plugins/cyberpunk-themes`, Claude Code lists every capability the plugin uses:
 
 | Capability | Why it's there |
 | --- | --- |

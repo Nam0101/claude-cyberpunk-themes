@@ -5,7 +5,7 @@
   "plugins": [
     {
       "name": "cyberpunk-themes",
-      "source": "./",
+      "source": "./plugins/cyberpunk-themes",
       "description": "Seven pixel-art cyberpunk themes for the Claude Code desktop app, switched with /neon."
     }
   ]
