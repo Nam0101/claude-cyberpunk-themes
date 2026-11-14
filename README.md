@@ -280,4 +280,4 @@ This is a fan project. It's my love letter to the cyberpunk genre and to *Cyberp
 
 It's unofficial, and not affiliated with or endorsed by Anthropic, CD PROJEKT RED or Studio Trigger. *Cyberpunk* and *Cyberpunk: Edgerunners* are trademarks of their owners.
 
-Released under the [MIT License](LICENSE). Have fun with it, stay preem, and go flatline some bugs, choom.
+Released under the [MIT License](LICENSE). The two `make-colors` helper files come from Claude Code's own mod kit and keep their original terms (see [NOTICE](NOTICE)). Have fun with it, stay preem, and go flatline some bugs, choom.

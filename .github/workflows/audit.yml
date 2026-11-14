@@ -25,7 +25,7 @@ jobs:
       - name: README assets are up to date
         run: |
           npm run build:assets
-          git diff --exit-code -- assets docs/themes || (echo "assets/ is out of date: run npm run build:assets and commit the result." && exit 1)
+          git diff --exit-code -- assets docs/themes || (echo "assets/ or docs/themes/ is out of date: run npm run build:assets and commit the result." && exit 1)
 
       - name: Manifests are valid JSON
         run: |

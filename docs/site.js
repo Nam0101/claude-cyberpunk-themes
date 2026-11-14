@@ -89,13 +89,13 @@ if (stage) {
   buttons.forEach((b) => b.addEventListener('click', () => {
     show(b.dataset.pick)
     paused = true
-    auto.setAttribute('aria-pressed', 'true')
+    auto.setAttribute('data-paused', '')
     auto.setAttribute('aria-label', 'Play the theme tour')
     schedule()
   }))
   auto.addEventListener('click', () => {
     paused = !paused
-    auto.setAttribute('aria-pressed', String(paused))
+    auto.toggleAttribute('data-paused', paused)
     auto.setAttribute('aria-label', paused ? 'Play the theme tour' : 'Pause the theme tour')
     schedule()
   })

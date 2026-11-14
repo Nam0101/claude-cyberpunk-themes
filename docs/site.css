@@ -128,8 +128,8 @@ html { scrollbar-color: #3a3a3c #000; }
 .picker__pause { width: 44px; padding: 0; justify-content: center; }
 .picker__pause svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .picker__pause .i-play { display: none; fill: currentColor; }
-.picker__pause[aria-pressed="true"] .i-play { display: block; }
-.picker__pause[aria-pressed="true"] .i-pause { display: none; }
+.picker__pause[data-paused] .i-play { display: block; }
+.picker__pause[data-paused] .i-pause { display: none; }
 
 /* Section voice: big statements, grey second lines, generous space above every heading. */
 section { scroll-margin-top: 52px; }

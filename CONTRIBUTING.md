@@ -20,7 +20,7 @@ The easiest way is honestly to open the repo in Claude Code and describe the the
 2. **Add the palette** to `hooks/palettes.ts`:
    - four surfaces, three text tones and five accents;
    - please keep `danger` a red, `success` a green and `warning` an amber, so they still mean something.
-3. **Register it** in `hooks/register.tsx` and add it to `scripts/scenes.mjs`.
+3. **Register it** in `hooks/register.tsx` and add it to `scripts/scenes.mjs`. If you want it on the website too, add it to `THEMES` in `docs/site.js` and to the picker and gallery in `docs/index.html`.
 4. **Run the checks:**
 
    ```bash
@@ -53,7 +53,7 @@ Contrast targets (the audit checks these for you):
 ## Pull requests
 
 - One change per pull request, please. Tell me what you checked.
-- If you touched a scene, commit the regenerated `assets/` too. CI checks they're up to date.
+- If you touched a scene, commit the regenerated `assets/` and `docs/themes/` too. CI checks they're up to date.
 - Add a line to `CHANGELOG.md` under an *Unreleased* heading.
 
 Thanks again!
