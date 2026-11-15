@@ -55,13 +55,14 @@ test('/neon <theme> works for every theme, by short name or by full title, in an
   }
 })
 
-test('/neon on its own lists all seven plus off, and a typo lists them too', async ($, on) => {
+test('/neon on its own lists all seven plus off and motion, and a typo lists them too', async ($, on) => {
   mock.store(on)
   app(on)
   const list = await neon($)
   expect(list.startsWith('Themes:')).toBe(true)
   for (const [id, title] of THEMES) expect(list.includes(`/neon ${id}`) && list.includes(title)).toBe(true)
-  expect(list.split('\n').filter(line => line.startsWith('  /neon ')).length).toBe(8)
+  expect(list.split('\n').filter(line => line.startsWith('  /neon ')).length).toBe(9)
+  expect(list.includes('/neon motion off')).toBe(true)
   expect((await neon($, 'alleyy')).startsWith('No theme named "alleyy". Themes:')).toBe(true)
 })
 
@@ -103,6 +104,48 @@ test("an unknown scene, and another plugin's backdrop, are left alone", async ($
     const ui = await $.ui.mount(target)
     expect(await ui.find({ type: 'Svg' })).toBeUndefined()
     expect((await ui.find({ type: 'Text' }))?.text).toBe("someone else's")
+    await ui.unmount()
+  }
+})
+
+test('/neon motion off and on say what they did, and /neon motion reports which it is', async ($, on) => {
+  mock.store(on, { scene: 'alley' })
+  app(on)
+  expect(await neon($, 'motion')).toBe('Motion is on. /neon motion off keeps the theme but stops the scene moving, which is easier on a laptop battery.')
+  expect(await neon($, 'motion off')).toBe('Motion off: the scene stays still. /neon motion on brings it back.')
+  expect(await neon($, 'MOTION')).toBe('Motion is off: scenes stay still. /neon motion on brings it back.')
+  expect(switched('Ripperdoc').test(await neon($, 'clinic'))).toBe(true)
+  expect(await neon($, 'motion on')).toBe('Motion on.')
+  expect((await neon($, 'motion')).startsWith('Motion is on.')).toBe(true)
+})
+
+test('/neon motion with the theme off is saved for later', async ($, on) => {
+  mock.store(on, { scene: 'off' })
+  app(on)
+  expect(await neon($, 'motion off')).toBe("Motion off: the scene stays still. /neon motion on brings it back. It'll apply when you turn a theme on.")
+})
+
+test('a still scene is the same drawing with every animation stopped', async ($, on) => {
+  app(on)
+  for (const [, , scene] of THEMES) {
+    const moving = await $.ui.mount(backdrop(PLUGIN, scene))
+    const still = await $.ui.mount(backdrop(PLUGIN, `${scene}-still`))
+    const a = String((await moving.find({ type: 'Svg' }))?.props.source)
+    const b = String((await still.find({ type: 'Svg' }))?.props.source)
+    expect(b).toBe(a.replace('<style>', '<style>*{animation:none!important}'))
+    expect(String((await still.find({ type: 'Svg' }))?.props.alt).length > 20).toBe(true)
+    await moving.unmount()
+    await still.unmount()
+  }
+})
+
+test('every moving scene runs on pixel frames: no smooth easing left', async ($, on) => {
+  app(on)
+  for (const [, , scene] of THEMES) {
+    const ui = await $.ui.mount(backdrop(PLUGIN, scene))
+    const source = String((await ui.find({ type: 'Svg' }))?.props.source)
+    expect(/animation:[\w-]+ [\d.]+s( -?[\d.]+s)? (linear|ease|ease-in|ease-out|ease-in-out)[ ;}"]/.test(source)).toBe(false)
+    expect(/steps\(\d+\)/.test(source)).toBe(true)
     await ui.unmount()
   }
 })

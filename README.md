@@ -121,6 +121,7 @@ Every scene is animated: what you see above is exactly what the plugin draws. Ea
 | `/neon` | Lists the themes. |
 | `/neon <theme>` | Switches theme: `rooftop`, `alley`, `net`, `clinic`, `badlands`, `blackwall` or `corpo`. |
 | `/neon off` | Goes back to the app's normal look. |
+| `/neon motion off` | Keeps the theme but stops the scene moving. Easier on a laptop battery. `/neon motion on` brings it back. |
 
 It remembers your pick, so new chats open with the same theme. If a chat was already open before you installed or switched, run `/reload-plugins` once (or just send a message) and the scene will show up. Don't be a gonk and spend ten minutes wondering why it's blank. I've been there.
 
@@ -184,7 +185,7 @@ If something is hard to read for you, please [open an issue](https://github.com/
 
 Short version: this plugin only changes how the app looks. That's it. No corpo spyware, no daemons hiding in your deck.
 
-- **Your data:** it doesn't read anything about your work, and it doesn't send anything anywhere. The only thing it saves is which theme you picked.
+- **Your data:** it doesn't read anything about your work, and it doesn't send anything anywhere. The only things it saves are which theme you picked and whether you turned motion off.
 - **What it sends, and where:** nothing ever leaves your machine. It only passes things to Claude Code itself:
   - the theme you picked (colours plus the name of the scene) goes to `$.theme.set`;
   - the scene's SVG goes to the app's own `Svg` element so it can draw it;
@@ -215,7 +216,7 @@ ui.render     ──▶ Backdrop: draw that theme's SVG behind the chat
 What each hook does, exactly:
 
 - **`session.start`** registers `/neon`, reads the theme you saved, and sets it. If you never picked one, it uses Neon Rooftop. If you turned it off, it does nothing. Then it lets the session carry on as normal.
-- **`command.run`** (only for `/neon`) answers `/neon`, `/neon <theme>` and `/neon off`. It never sees or changes any other command, and never runs one itself.
+- **`command.run`** (only for `/neon`) answers `/neon`, `/neon <theme>`, `/neon off` and `/neon motion on|off`. It never sees or changes any other command, and never runs one itself.
 - **`ui.render`** (only for `Backdrop`) draws the scene for this plugin's own backdrop. Any other plugin's backdrop, and every other part of the app, gets passed straight through untouched.
 
 - **Palettes** live in [`palettes.ts`](plugins/cyberpunk-themes/hooks/palettes.ts). You give `makeColors` a handful of colours (four surfaces, three text shades, five accents). It works out the hundred or so the app needs, and tells you if anything won't be readable.
@@ -265,10 +266,13 @@ No. They're a Claude Code plugin, so they only show in the **Code tab** of the C
 The `/neon` command works there, but the terminal and the VS Code extension don't draw backdrops, so you'll only see the themes in the desktop app.
 
 **Is it safe to install?**
-Yes. It only changes how the app looks: no network, file or process access, and the one thing it saves is your theme choice. Don't trust me, check it: `claude plugin validate plugins/cyberpunk-themes` lists every call it makes.
+Yes. It only changes how the app looks: no network, file or process access, and the only things it saves are your theme choice and your motion setting. Don't trust me, check it: `claude plugin validate plugins/cyberpunk-themes` lists every call it makes.
 
 **Will the moving scenes distract me while I code?**
-Everything moves slowly and nothing flashes. If you want it fully still, turn on *reduce motion* in your system settings and every scene becomes a still picture.
+Everything moves slowly and nothing flashes. If you want it fully still, type `/neon motion off`, or turn on *reduce motion* in your system settings, and the scene becomes a still picture.
+
+**Will it slow my laptop down?**
+The scenes animate in pixel-art frames (8 a second for movement, 4 for fades) rather than smooth 60fps, which keeps the CPU cost low. In my tests that's about two thirds less than smooth animation. If you're on battery and want zero, `/neon motion off` freezes the scene and keeps the theme.
 
 **Can I make my own Claude Code theme?**
 Yes, that's half the point. Clone the repo, open it in Claude Code and describe the theme you want. See [Make it yours](#make-it-yours-with-claude).

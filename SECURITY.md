@@ -7,7 +7,7 @@ Not much, and that's on purpose. It only changes how the Claude Code desktop app
 | Capability | Why it's there |
 | --- | --- |
 | `$.command.register` | Adds the `/neon` command. |
-| `$.store.get` / `$.store.set` | Remembers which theme you picked. That's the only thing it saves. |
+| `$.store.get` / `$.store.set` | Remembers which theme you picked, and whether motion is off. That's all it saves. |
 | `$.theme.set` / `$.theme.clear` | Applies the palette and scene, or removes them. |
 | `$.ui.status` / `$.ui.toast` | Lets you know if a window can't show the theme. |
 | `$.ui.resolve` | Draws the background. |

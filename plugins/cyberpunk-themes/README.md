@@ -21,6 +21,7 @@ Say `y` to add the marketplace, then pick a scope. **user** makes the themes wor
 | `/neon` | Lists the themes |
 | `/neon <theme>` | Switches to it and remembers it for every session |
 | `/neon off` | Back to the app's own look |
+| `/neon motion off` / `on` | Keeps the theme but stops the scene moving, or starts it again |
 
 The themes are `rooftop`, `alley`, `net`, `clinic`, `badlands`, `blackwall` (dark mode) and `corpo` (light mode).
 
@@ -29,7 +30,7 @@ The themes are `rooftop`, `alley`, `net`, `clinic`, `badlands`, `blackwall` (dar
 It's a mod: one TypeScript module, `hooks/register.tsx`, with three hooks.
 
 - **`session.start`** registers `/neon`, reads the theme you saved, and sets it. If you never picked one, it uses Neon Rooftop. If you turned it off, it does nothing. Then it lets the session carry on as normal.
-- **`command.run`** (only for `/neon`) answers `/neon`, `/neon <theme>` and `/neon off`. It never sees or changes any other command, and never runs one itself.
+- **`command.run`** (only for `/neon`) answers `/neon`, `/neon <theme>`, `/neon off` and `/neon motion on|off`. It never sees or changes any other command, and never runs one itself.
 - **`ui.render`** (only for `Backdrop`) draws the scene for this plugin's own backdrop. Any other plugin's backdrop, and every other part of the app, gets passed straight through untouched.
 
 The calls it makes are `$.command.register`, `$.store.get` / `$.store.set`, `$.theme.set` / `$.theme.clear`, `$.ui.toast` / `$.ui.status` and `$.ui.resolve`. That's the whole list.
@@ -40,7 +41,7 @@ Nothing ever leaves your machine. It only passes things to Claude Code itself:
 
 - the theme you picked (colours plus the name of the scene) goes to `$.theme.set`;
 - the scene's SVG goes to the app's own `Svg` element so it can draw it;
-- the theme name is stored with `$.store`, on your machine;
+- the theme name and your motion setting are stored with `$.store`, on your machine;
 - the list of themes goes back to you as the reply to `/neon`.
 
 It has no network, file, process, model or tool access, reads nothing about your work, and has no dependencies or install scripts. The scenes are plain SVG built from text in the `hooks/*.ts` files: no scripts, links, external resources or embedded images.

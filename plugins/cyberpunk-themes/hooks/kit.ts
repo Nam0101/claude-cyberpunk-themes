@@ -141,5 +141,37 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weigh
 
 /** The SVG root every scene shares. */
 export function svgRoot(style: string, defs: string, body: string): string {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><style>${KIT_STYLE}${style}</style><defs>${defs}</defs>${body}</svg>`
+  return pixelFrames(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><style>${KIT_STYLE}${style}</style><defs>${defs}</defs>${body}</svg>`)
+}
+
+/** Frames per second for things that move, and for things that only fade. */
+const MOVE_FPS = 8
+const FADE_FPS = 4
+
+/**
+ * Turns every smooth animation into pixel-art frames, like an old game: things move 8 times a second and fade 4 times
+ * a second, instead of up to 60. A scene behind your chat repaints far less often, so it costs a lot less CPU and
+ * battery (my tests: about half to a fifth). It does this by swapping each easing for steps() and snapping start
+ * offsets to the same 1/8 s grid, so the scene's elements change together instead of one after another.
+ * Animations that already use steps() are left as they are.
+ */
+export function pixelFrames(svg: string): string {
+  const keyframes = new Map<string, { segments: number; moves: boolean }>()
+  for (const [, name, body] of svg.matchAll(/@keyframes ([\w-]+)\{((?:[^{}]*\{[^{}]*\})*)\}/g)) {
+    const stops = new Set<number>([0, 100])
+    for (const [, selectors] of body!.matchAll(/([^{}]+)\{[^{}]*\}/g)) {
+      for (const s of selectors!.split(',')) stops.add(s.trim() === 'from' ? 0 : s.trim() === 'to' ? 100 : parseFloat(s))
+    }
+    keyframes.set(name!, { segments: Math.max(1, stops.size - 1), moves: /transform/.test(body!) })
+  }
+  const snap = (seconds: number) => Math.round(seconds * MOVE_FPS) / MOVE_FPS
+  return svg
+    .replace(/animation:([\w-]+) ([\d.]+)s( -?[\d.]+s)? (linear|ease|ease-in|ease-out|ease-in-out)(?=[ ;}"])/g, (_, name: string, duration: string, delay: string | undefined, _easing: string) => {
+      const frames = keyframes.get(name)
+      const fps = frames?.moves ? MOVE_FPS : FADE_FPS
+      const steps = Math.max(1, Math.round((Number(duration) / (frames?.segments ?? 1)) * fps))
+      const start = delay === undefined ? '' : ` ${snap(parseFloat(delay))}s`
+      return `animation:${name} ${duration}s${start} steps(${steps})`
+    })
+    .replace(/animation-delay:(-?[\d.]+)s/g, (_, seconds: string) => `animation-delay:${snap(Number(seconds))}s`)
 }

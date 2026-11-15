@@ -7,6 +7,7 @@
 // Plain string building again: no DOM, nothing from outside, same picture every time.
 
 import { EXTRA_STYLE, codeScreen, flyingCar, glyphSign, megatower } from './extras'
+import { pixelFrames } from './kit'
 import { BOB, JACKET, cellsOf, grain, hash, mascot, square } from './scene'
 
 const WIDTH = 1600
@@ -393,7 +394,7 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 <clipPath id="slice"><rect x="0" y="300" width="${WIDTH}" height="22"/><rect x="0" y="352" width="${WIDTH}" height="10"/></clipPath>
 ${grain()}`
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><style>${style}${EXTRA_STYLE}</style><defs>${defs}</defs>
+  return pixelFrames(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><style>${style}${EXTRA_STYLE}</style><defs>${defs}</defs>
 <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#sky)"/>
 <ellipse cx="900" cy="${STREET}" rx="1000" ry="460" fill="url(#smog)"/>
 ${motes(800, 160, 700, 120, 40, 11)}
@@ -423,5 +424,5 @@ ${vending()}
 ${motes(470, 800, 120, 60, 18, 37)}
 ${rain(501, 65, 18, 0.15, 7)}
 <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#grain)"/>
-</svg>`
+</svg>`)
 }

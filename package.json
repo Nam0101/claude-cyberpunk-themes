@@ -1,6 +1,6 @@
 {
   "name": "claude-cyberpunk-themes",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "description": "Development scripts for the cyberpunk-themes Claude Code plugin. The plugin itself has no dependencies.",
   "type": "module",

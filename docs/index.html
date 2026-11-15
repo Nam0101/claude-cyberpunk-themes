@@ -52,7 +52,7 @@
         { "@type": "Question", "name": "Do the themes work in the Claude chat app?", "acceptedAnswer": { "@type": "Answer", "text": "No. They are a Claude Code plugin, so they only show in the Code tab of the Claude desktop app. The Chat tab, claude.ai and the mobile app can't load plugins." } },
         { "@type": "Question", "name": "Do they work in the terminal or VS Code?", "acceptedAnswer": { "@type": "Answer", "text": "The /neon command works there, but the terminal and the VS Code extension don't draw backdrops, so you only see the themes in the desktop app." } },
         { "@type": "Question", "name": "Is the plugin safe to install?", "acceptedAnswer": { "@type": "Answer", "text": "It only changes how the app looks. It has no network, file or process access, and the one thing it saves is your theme choice. Run claude plugin validate on it to see every call it makes." } },
-        { "@type": "Question", "name": "Will the moving scenes be distracting?", "acceptedAnswer": { "@type": "Answer", "text": "Everything moves slowly and nothing flashes. With reduce motion on in your system settings, every scene becomes a still picture." } },
+        { "@type": "Question", "name": "Will the moving scenes be distracting?", "acceptedAnswer": { "@type": "Answer", "text": "Everything moves slowly and nothing flashes. Type /neon motion off, or turn on reduce motion in your system settings, and the scene becomes a still picture." } },
         { "@type": "Question", "name": "Can I make my own Claude Code theme?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Clone the repository, open it in Claude Code and describe the theme you want. The characters are text maps, so Claude can redraw them for you. It's MIT licensed." } },
         { "@type": "Question", "name": "Which Claude Code versions are supported?", "acceptedAnswer": { "@type": "Answer", "text": "The Claude Code desktop app, version 2.1.324 or later." } }
       ]
@@ -162,7 +162,7 @@
   <section class="trust" aria-labelledby="trust-h">
     <div class="trust__words">
       <h2 id="trust-h" class="sec-h">It only changes how Claude Code looks.</h2>
-      <p>No network, files, processes, models or tools. The only thing it saves is the name of your theme. Don't take my word for it: Claude Code's own validator lists every call, and anyone can run it. No corpo spyware here.</p>
+      <p>No network, files, processes, models or tools. The only things it saves are the name of your theme and whether motion is on. Don't take my word for it: Claude Code's own validator lists every call, and anyone can run it. No corpo spyware here.</p>
       <p class="trust__note">Text contrast is 13:1 or better in every theme, and with reduce motion on, every scene holds still.</p>
     </div>
     <pre class="term" aria-label="Output of claude plugin validate"><code><span class="t-dim">$</span> claude plugin validate .
@@ -200,7 +200,7 @@
       <div><dt>Do the themes work in the Claude chat app?</dt><dd>No. They're a Claude Code plugin, so they only show in the Code tab of the Claude desktop app. The Chat tab, claude.ai and the mobile app can't load plugins.</dd></div>
       <div><dt>Do they work in the terminal or VS Code?</dt><dd>The <code>/neon</code> command works there, but the terminal and the VS Code extension don't draw backdrops, so you only see the themes in the desktop app.</dd></div>
       <div><dt>Is the plugin safe to install?</dt><dd>It only changes how the app looks. It has no network, file or process access, and the one thing it saves is your theme choice. Run <code>claude plugin validate</code> on it to see every call it makes.</dd></div>
-      <div><dt>Will the moving scenes be distracting?</dt><dd>Everything moves slowly and nothing flashes. With reduce motion on in your system settings, every scene becomes a still picture.</dd></div>
+      <div><dt>Will the moving scenes be distracting?</dt><dd>Everything moves slowly and nothing flashes. Type <code>/neon motion off</code>, or turn on reduce motion in your system settings, and the scene becomes a still picture.</dd></div>
       <div><dt>Can I make my own Claude Code theme?</dt><dd>Yes. Clone the repo, open it in Claude Code and describe the theme you want. The characters are text maps, so Claude can redraw them for you. It's MIT licensed.</dd></div>
       <div><dt>Which Claude Code versions are supported?</dt><dd>The Claude Code desktop app, version 2.1.324 or later.</dd></div>
     </dl>

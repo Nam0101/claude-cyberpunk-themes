@@ -2,9 +2,10 @@
 //   1. when a session starts, applies whichever theme you picked last (Neon Rooftop if you never picked one),
 //   2. handles the /neon command for listing and switching themes,
 //   3. draws the chosen theme's scene behind the chat.
-// That's all it does: it never reads your work, never touches the network, and only remembers the theme name.
+// That's all it does: it never reads your work, never touches the network, and only remembers two things:
+// the theme you picked, and whether you turned the scene's motion off.
 
-import type { Register, ThemeSetArgs } from 'claude-code'
+import type { Register, ThemeScene, ThemeSetArgs } from 'claude-code'
 
 import { phosphorAlleySvg } from './alley'
 import { badlandsSvg } from './badlands'
@@ -19,6 +20,9 @@ import { neonRooftopSvg } from './scene'
 const PLUGIN = 'cyberpunk-themes'
 const COMMAND = 'neon'
 const STORE_KEY = 'scene'
+const MOTION_KEY = 'motion'
+/** Added to a scene's name when its motion is off, so the backdrop knows to draw it still. */
+const STILL = '-still'
 
 type Look = { id: string; title: string; blurb: string; theme: ThemeSetArgs; problems: string[]; svg: () => string; alt: string }
 
@@ -64,7 +68,25 @@ const LOOKS: readonly Look[] = [
 const built = new Map<string, string>()
 
 function lookOf(word: string): Look | undefined {
-  return LOOKS.find(one => one.id === word || one.title.toLowerCase() === word || one.theme.backdrop?.scene === word)
+  return LOOKS.find(one => one.id === word || one.title.toLowerCase() === word || sceneOf(one) === word)
+}
+
+function sceneOf(chosen: Look): string | undefined {
+  const backdrop = chosen.theme.backdrop
+  return backdrop !== undefined && 'scene' in backdrop ? backdrop.scene : undefined
+}
+
+/** The theme to set: the same look, with the still version of its scene when motion is off. */
+function themeOf(chosen: Look, still: boolean): ThemeSetArgs {
+  const backdrop = chosen.theme.backdrop
+  if (!still || backdrop === undefined || !('scene' in backdrop)) return chosen.theme
+  const moving = backdrop as ThemeScene
+  return { ...chosen.theme, backdrop: { ...moving, scene: moving.scene + STILL } }
+}
+
+/** Freezes a scene on its first frame: the same rule reduced motion uses, applied all the time. */
+function stillOf(svg: string): string {
+  return svg.replace('<style>', '<style>*{animation:none!important}')
 }
 
 /** A palette line the desktop app can't paint, if there is one, to show as a notice. */
@@ -82,15 +104,16 @@ const NO_THEMES_HERE = "This window can't show themes, but your pick is saved fo
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
-    await $.command.register({ name: COMMAND, description: 'Switch the cyberpunk theme: /neon to list them, /neon <name>, /neon off' })
+    await $.command.register({ name: COMMAND, description: 'Switch the cyberpunk theme: /neon to list them, /neon <name>, /neon off, /neon motion off' })
     const kept = await $.store.get(STORE_KEY)
+    const still = (await $.store.get(MOTION_KEY)) === 'off'
     const chosen = kept === 'off' ? undefined : (lookOf(String(kept ?? '')) ?? LOOKS[0])
 
     if (chosen !== undefined) {
       const unpainted = unpaintedOf(chosen)
       if (unpainted !== undefined) $.ui.toast(unpainted)
       try {
-        const set = await $.theme.set(chosen.theme)
+        const set = await $.theme.set(themeOf(chosen, still))
         if (!set.isDrawn) $.ui.status(set.reason)
       } catch {
         // Nothing to draw in this window. The session carries on as normal, and /neon still works.
@@ -113,18 +136,47 @@ export const register: Register = on => {
       return { text: "Theme off. /neon <name> turns one back on." }
     }
 
+    // /neon motion on|off keeps the theme and turns the scene's animation on or off. Easier on a laptop battery.
+    const motion = /^motion(?:\s+(on|off))?$/.exec(word)
+
+    if (motion !== null) {
+      if (motion[1] === undefined) {
+        const off = (await $.store.get(MOTION_KEY)) === 'off'
+        return { text: off ? 'Motion is off: scenes stay still. /neon motion on brings it back.' : 'Motion is on. /neon motion off keeps the theme but stops the scene moving, which is easier on a laptop battery.' }
+      }
+
+      const still = motion[1] === 'off'
+      await $.store.set(MOTION_KEY, still ? 'off' : 'on')
+      const said = still ? 'Motion off: the scene stays still. /neon motion on brings it back.' : 'Motion on.'
+      const kept = await $.store.get(STORE_KEY)
+      const current = kept === 'off' ? undefined : (lookOf(String(kept ?? '')) ?? LOOKS[0])
+
+      if (current === undefined) {
+        return { text: `${said} It'll apply when you turn a theme on.` }
+      }
+
+      try {
+        await $.theme.set(themeOf(current, still))
+      } catch {
+        // This window can't show themes. The setting is saved for one that can.
+      }
+      return { text: said }
+    }
+
     const chosen = lookOf(word)
 
     if (chosen === undefined) {
-      const list = LOOKS.map(one => `  /neon ${one.id.padEnd(9)} ${one.title}: ${one.blurb}`).join('\n')
-      return { text: `${word === '' ? 'Themes:' : `No theme named "${word}". Themes:`}\n${list}\n  /neon off       back to the app's own look` }
+      const list = LOOKS.map(one => `  /neon ${one.id.padEnd(11)} ${one.title}: ${one.blurb}`).join('\n')
+      const extra = "  /neon off          back to the app's own look\n  /neon motion off   keep the theme, stop the scene moving (on brings it back)"
+      return { text: `${word === '' ? 'Themes:' : `No theme named "${word}". Themes:`}\n${list}\n${extra}` }
     }
 
     await $.store.set(STORE_KEY, chosen.id)
+    const still = (await $.store.get(MOTION_KEY)) === 'off'
     const unpainted = unpaintedOf(chosen)
     if (unpainted !== undefined) $.ui.toast(unpainted)
     try {
-      const set = await $.theme.set(chosen.theme)
+      const set = await $.theme.set(themeOf(chosen, still))
       return { text: set.isDrawn ? `${chosen.title} on.` : `${chosen.title} saved, but this window can't show it: ${set.reason}` }
     } catch {
       return { text: `${chosen.title} picked. ${NO_THEMES_HERE}` }
@@ -136,18 +188,21 @@ export const register: Register = on => {
       return next(e)
     }
 
-    const chosen = typeof e.props.scene === 'string' ? lookOf(e.props.scene) : undefined
+    const scene = typeof e.props.scene === 'string' ? e.props.scene : ''
+    const still = scene.endsWith(STILL)
+    const chosen = lookOf(still ? scene.slice(0, -STILL.length) : scene)
 
     if (chosen === undefined) {
       return next(e)
     }
 
     const { Svg } = $.ui.resolve(e)
-    let svg = built.get(chosen.id)
+    const key = chosen.id + (still ? STILL : '')
+    let svg = built.get(key)
 
     if (svg === undefined) {
-      svg = chosen.svg()
-      built.set(chosen.id, svg)
+      svg = still ? stillOf(chosen.svg()) : chosen.svg()
+      built.set(key, svg)
     }
 
     return <Svg isInteractive source={svg} alt={chosen.alt} />

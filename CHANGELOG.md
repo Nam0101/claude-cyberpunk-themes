@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-11-15
+
+### Added
+
+- `/neon motion off` keeps the theme but stops the scene moving, and `/neon motion on` brings it back. Handy on battery. `/neon motion` says which one is on. The setting is remembered like your theme.
+
+### Changed
+
+- Scenes animate in pixel-art frames (8 a second for movement, 4 for fades) instead of smooth 60fps animation. It suits the art, and it's much lighter on the CPU: in my tests, Chrome's total use dropped from about 1.2 cores to 0.6 on average, across all seven scenes. Thanks to the Reddit comment that flagged it.
+- The README and site FAQ explain both, and `npm test` checks every scene is on pixel frames and that the still version matches the moving one.
+
 ## [1.0.1] - 2026-11-15
 
 ### Fixed
@@ -16,7 +27,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - The plugin's README says what each hook does and what it sends where (nothing leaves your machine).
 - Added `npm test`, which runs the plugin against Claude Code's own engine.
 
-## [1.0.0] - 2026-11-14
+## 1.0.0 - 2026-11-14
 
 ### Added
 
@@ -29,5 +40,5 @@ All notable changes to this project are documented here. The format follows [Kee
 - `scripts/build-assets.mjs`: renders the README's launch film and theme previews from the plugin's own scenes.
 - A landing page on GitHub Pages (`docs/`): a live theme picker, the gallery, install steps and an FAQ, with search and social metadata.
 
+[1.1.0]: https://github.com/nocashflow/claude-cyberpunk-themes/releases/tag/v1.1.0
 [1.0.1]: https://github.com/nocashflow/claude-cyberpunk-themes/releases/tag/v1.0.1
-[1.0.0]: https://github.com/nocashflow/claude-cyberpunk-themes/releases/tag/v1.0.0

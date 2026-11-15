@@ -20,6 +20,7 @@ type Building = { x: number; w: number; h: number }
 
 /** A repeatable number in 0..1 from two integers. */
 import { EXTRA_STYLE, blimp, flyingCar, glyphSign, holoEye, megatower } from './extras'
+import { pixelFrames } from './kit'
 
 export function hash(a: number, b: number): number {
   let h = (Math.imul(a | 0, 374761393) + Math.imul(b | 0, 668265263)) >>> 0
@@ -374,7 +375,7 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weigh
 <mask id="sides" maskUnits="userSpaceOnUse" x="0" y="0" width="${WIDTH}" height="${HEIGHT}"><rect width="${WIDTH}" height="${HEIGHT}" fill="url(#sideward)"/></mask>
 ${grain()}`
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><style>${style}${EXTRA_STYLE}</style><defs>${defs}</defs>
+  return pixelFrames(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><style>${style}${EXTRA_STYLE}</style><defs>${defs}</defs>
 <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#sky)"/>
 <ellipse cx="800" cy="${HORIZON}" rx="1100" ry="420" fill="url(#haze)"/>
 ${stars()}
@@ -398,5 +399,5 @@ ${heart(1183, ROOF - 9 * CELL - 36)}
 ${ground()}
 ${rain(301, 70, 16, 0.16, 8)}
 <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#grain)"/>
-</svg>`
+</svg>`)
 }
